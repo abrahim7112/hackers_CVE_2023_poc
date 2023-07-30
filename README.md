@@ -3,7 +3,7 @@ In this project, I will build the largest hacking program with new tools and des
 use python
 # install hackers
 ```
-get clone https://github.com/abrahim7112/hackers.git
+git clone https://github.com/abrahim7112/hackers.git
 cd hackers
 pip install
 python hackers.py
