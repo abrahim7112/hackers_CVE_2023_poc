@@ -8,6 +8,10 @@ Welcome to here are the new hacking tools, here in the sections there are new ha
 The largest hacking program with new tools <h6>CVE-2023-PoC</h6> for the year 2023 It contains all the attack and exploitation tools for testing websites, as well as a graphical interface to facilitate its use for beginners,
 use python
 
+Injection flaws occur when untrusted user data are sent to the web application as part of a command or query. The attacker’s hostile data can trick the web application into executing unintended commands or accessing unauthorized data. Injection occurs when a hacker feeds malicious, input into the web application that is then acted on (processed) in an unsafe manner. This is one of the oldest attacks against web applications, but it’s still the king of the vulnerabilities because it is still widespread and very damaging.
+
+Injection vulnerabilities can pop up in all sorts of places within the web application that allow the user to provide malicious input. Some of the most common injection attacks target the following functionality:
+
 <h1>home page atooles</h1>
 
 <h3>sqlmap</h3>
