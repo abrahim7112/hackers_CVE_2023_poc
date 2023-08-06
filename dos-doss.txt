@@ -3,7 +3,6 @@ What is Application-Level DoS?
 A Denial-of-Service (DoS) attack is an attack meant to shut down a machine or network, making it inaccessible to its intended users. DoS attacks accomplish this by flooding the target with traffic, or sending it information that triggers a crash.
 
 What are types of DOS attacks?
-
     · flooding services
 
     · Rate limiting
