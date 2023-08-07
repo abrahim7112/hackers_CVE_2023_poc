@@ -86,24 +86,30 @@ class home:
                 get_button = Button(F2, text="Get Quote", command=get_quote)
                 text_box.pack()
                 get_button.pack() 
+            def p():
+                from sql import Remotephp1
+                r = Remotephp1
+            def CVE_2022_31101sql():
+                from sql import CVE_2022_31101sql
+                #CVE_2022_31101sql()
             Hacher_tooles = LabelFrame(F2, text="The Description", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
             Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#7ea982", fg="#404040")#.pack(fill=X)
+            Hacher_title = Label(F2, text="SQL Injection : In this section, we'll explain what SQL injection is, describe some common examples, explain how to find \nand exploit various kinds of SQL injection vulnerabilities, and summarize how to prevent SQL injection.\nWhat is SQL injection (SQLi)?\nSQL injection is a web security vulnerability that allows an attacker to \ninterfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to \nretrieve. This might include data belonging to other users, or any other data that the application itself is able to\n access. In many cases, an attacker can modify or delete this data, causing persistent changes to the application's\n content or behavior.In some situations, an attacker can escalate an SQL injection \nattack to compromise the underlying server or other back-end infrastructure, or perform a denial-of-service attack.", font=(
+            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#7ea982", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
             b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", 
                                                  relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
+            b4_button = Button(F2, text ="commix",command = p, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
                                                   relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
+            b5_button = Button(F2, text ="CVE-2022-31101sql",command = CVE_2022_31101sql,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
                                                   relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
             
   
@@ -197,7 +203,7 @@ class home:
             F2 = Frame(self.root, bd=8, relief=GROOVE ,bg="#918713")
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
             Hacher_title = Label(F2, text="xss injection", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#918713", fg="black").pack(fill=X)
+            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#918713", fg="white").pack(fill=X)
             def Time_Based():
                 F2 = Frame(self.root, bd=8, relief=GROOVE)
                 F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
@@ -220,8 +226,8 @@ class home:
             Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#b6ad48", fg="#404040")
+            Hacher_title = Label(F2, text="A Cross-Site Scripting (XSS) attack is characterized by an attacker's ability to inject to a web application,\n scripts of any kind, such as Flash, HTML, or JavaScript, \nthat are intended to run and render on the application serving the page. The web application unintentionally serves the\n script code which is executed by the browser and hence makes the user vulnerable to data theft and any privileges level\n which the script is allowed.The source of an XSS vulnerability lies in a web application that allows malicious\n code to be injected and evaluated as part of the web page being served to the user, and then the same malicious\n code is executed by the browser due to the web application inability to filter and sanitize the output.", font=(
+            "arial", 12, "bold"), bd=7, relief=GROOVE, bg="#b6ad48", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
             b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
@@ -321,7 +327,6 @@ class home:
                 def get_quote():
                     r = requests.get('https://hackerone.com/users/sign_in')
                     data = r.text
-                    #quote = data['content']
                     text_box.delete('1.0', END)
                     text_box.insert(END, data)  
                 text_box = Text(F2, height=10, width=50)
@@ -336,8 +341,8 @@ class home:
             Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#be8f47", fg="#404040")#.pack(fill=X)
+            Hacher_title = Label(F2, text="Command injection is an attack in which the goal is execution of arbitrary commands on the host operating system \nvia a vulnerable application. Command injection attacks are possible when an application \npasses unsafe user supplied data (forms, cookies, HTTP headers etc.) to a system shell. In this attack,\n the attacker-supplied operating system commands are usually executed with the privileges of the vulnerable application. \nCommand injection attacks are possible largely due to insufficient input validation.\nThis attack differs from Code Injection, in that code injection allows the attacker to add their own code that is\n then executed by the application. In Command Injection, the attacker extends the default functionality of\n the application, which execute system commands, without the necessity of injecting code.", font=(
+            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#be8f47", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
             b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
@@ -456,8 +461,8 @@ class home:
             Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#7ea982", fg="#404040")#.pack(fill=X)
+            Hacher_title = Label(F2, text="SSIs are directives present on Web applications used to feed an HTML page with dynamic contents. \nThey are similar to CGIs, except that SSIs are used to execute some actions before the current page is\n loaded or while the page is being visualized. In order to do so, the web server analyzes SSI before supplying the\n page to the user. The Server-Side Includes attack allows the exploitation of a web application by injecting scripts in HTML \npages or executing arbitrary codes remotely. It can be exploited through manipulation of SSI \nin use in the application or force its use through user input fields. It is possible to check if the application is properly\n validating input fields data by inserting characters that are used in SSI directives, like:", font=(
+            "arial", 12, "bold"), bd=7, relief=GROOVE, bg="#7ea982", fg="#404040")#.pack(fill=X)
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
             b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
@@ -669,21 +674,8 @@ class home:
             Hacher_title = Label(F2, text="xml injection", font=(
             "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#8322a4", fg="white").pack(fill=X)
             def Time_Based():
-                F2 = Frame(self.root, bd=8, relief=GROOVE)
-                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="sql injection", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="yellow", fg="black").pack(fill=X)
-                def get_quote():
-                    r = requests.get('https://hackerone.com/users/sign_in')
-                    data = r.text
-                    #quote = data['content']
-                    text_box.delete('1.0', END)
-                    text_box.insert(END, data)  
-                text_box = Text(F2, height=10, width=50)
-                get_button = Button(F2, text="Get Quote", command=get_quote)
-  
-                text_box.pack()
-                get_button.pack() 
+                from xmlin import cope
+                F2 = cope() 
                  
             Hacher_tooles = LabelFrame(F2, text="The Description", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
@@ -691,8 +683,8 @@ class home:
             Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#9a65ac", fg="#404040")#.pack(fill=X)
+            Hacher_title = Label(F2, text="In this section, we'll explain what XML external entity injection is, describe some common examples, explain how to find and \nexploit various kinds of XXE injection, and summarize how to prevent XXE injection attacks.\nWhat is XML external entity injection?\nXML external entity injection (also known as XXE) is a web security vulnerability\n that allows an attacker to interfere with an application's processing of XML data. It often allows an attacker to view files on\n the application server filesystem, and to interact with any backend or external systems that the application \nitself can access.In some situations, an attacker can escalate an XXE attack to compromise the underlying server or other\n backend infrastructure, by leveraging the XXE vulnerability to perform server-side request forgery (SSRF) attacks.", font=(
+            "arial", 12, "bold"), bd=7, relief=GROOVE, bg="#9a65ac", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
             b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
@@ -808,8 +800,8 @@ class home:
             Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#af559f", fg="#404040")
+            Hacher_title = Label(F2, text="In computing, a denial-of-service attack (DoS attack) is a cyber-attack in which \nthe perpetrator seeks to make a machine or network resource unavailable to its intended users by\n temporarily or indefinitely disrupting services of a host connected to a network. Denial of service is typically \naccomplished by flooding the targeted machine or resource with superfluous requests in an attempt to\n overload systems and prevent some or all legitimate requests from being fulfilled. ", font=(
+            "arial", 13, "bold"), bd=7, relief=GROOVE, bg="#af559f", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
             b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
@@ -996,7 +988,7 @@ class home:
                 F3 = injection()
              
             Hacher_s = LabelFrame(F2, text="prat injection", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#6e0f03", fg="#ccc4c4")
             Hacher_s.place(x=2, y=49, relwidth=0.24, relheight=0.92)
             p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
@@ -1004,25 +996,26 @@ class home:
             p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
-            b2_button = Button(F2, text ="xss injection",command = xssinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)
+            b2_button = Button(F2, text ="xss injection",command = xssinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.15,anchor = NE)
           
-            b4_button = Button(F2, text ="sql injection",command = sqlinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.24,anchor = NE)
+            b4_button = Button(F2, text ="sql injection",command = sqlinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx =0.23, rely = 0.24,anchor = NE)
             
 
-            b5_button = Button(F2, text ="commamd injection",command = commamd_injection,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.33,anchor = NE)
+            b5_button = Button(F2, text ="commamd injection",command = commamd_injection,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.33,anchor = NE)
             
   
-            b6_button = Button(F2, text ="xml injection",command = xml_injection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.42,anchor = NE)
-            b6_button = Button(F2, text ="dos ddos",command = ddos, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.51,anchor = NE)
+            b6_button = Button(F2, text ="xml injection",command = xml_injection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.42,anchor = NE)
+
+            b6_button = Button(F2, text ="dos ddos",command = ddos, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.51,anchor = NE)
             
-            b2_button = Button(F2, text ="server-side-injection",command = server_side, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.60,anchor = NE)
+            b2_button = Button(F2, text ="server-side-injection",command = server_side, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.60,anchor = NE)
             
-            b2_button = Button(F2, text ="Server-side-template",command = Server_side_template, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.69,anchor = NE)
+            b2_button = Button(F2, text ="Server-side-template",command = Server_side_template, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.69,anchor = NE)
           
             #b4_button = Button(F2, text ="commix",command = sqlinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.78,anchor = NE)
             
   
-            b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
+            b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.90,anchor = NE)
             
 
 ####################################################################################
@@ -1185,20 +1178,10 @@ class home:
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
             Hacher_title = Label(F2, text="working", font=(
                 "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").pack(fill=X)
-       # scroll_y = Scrollbar(F2, orient=VERTICAL)
-        #self.txtarea = Text(F2, yscrollcommand=scroll_y.set, font=(
-         #   "times new roman", 15, "bold"), fg="#3206b8")
-        #scroll_y.pack(side=RIGHT, fill=Y)
-        #scroll_y.config(command=self.txtarea.yview)
-        #self.txtarea.insert(
-        #    END, "Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!!")
-       # self.txtarea.pack(fill=BOTH, expand=1)
-        
-        #Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-         #   "arial", 10, "bold"), bd=7, relief=GROOVE, bg="white", fg="#404040").pack(fill=X)
+       
 
-        #Hacher_tooles = Label(F2, text="Tooles Other", font=(
-         #   "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").pack(fill=X)
+       
+       
 ############################################################################################################
 ###########################################################################################################
 
@@ -1335,7 +1318,7 @@ class home:
                 "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
             Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#679a80", fg="#404040")
+            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#679a80", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
             b2_button = Button(F2, text ="sqlmap",command = sqlmap, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
