@@ -2,7 +2,7 @@
 This project is under development, please refer to this page to see the update
 
 <h1>hackers CVE-2023</h1> 
-![hackers](https://github.com/abrahim7112/hackers/blob/main/hackers.png)
+
 Welcome to here are the new hacking tools, here in the sections there are new hacking tools all you have to do is choose the tool to test any website on the internet and get new vulnerabilities!!!!
 
 The largest hacking program with new tools <h6>CVE-2023-PoC</h6> for the year 2023 It contains all the attack and exploitation tools for testing websites, as well as a graphical interface to facilitate its use for beginners,
