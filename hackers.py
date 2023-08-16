@@ -22,10 +22,9 @@ class home:
     def __init__(self):
         self.root = tkinter.Tk()
         self.root.geometry('1350x700+0+0')
-        self.frame1 = tkinter.Label(self.root,width = 400,height = 400,bg = '#AAAAAA')
+        self.frame1 = tkinter.Label(self.root,width = 400,height = 400,bg = 'black')
         self.frame1.pack()
         self.root.title("hackers")
-        self.root.geometry('1350x700+0+0')
         menu = Menu(self.root)
         self.root.config(menu=menu)
         file = Menu(menu, tearoff = 0)
@@ -48,13 +47,73 @@ class home:
         edit.add_separator()
         edit.add_command(label ='Find...', command = None)
         edit.add_command(label ='Find again', command = None)
+        # Adding tooles Menu
+        tooles = Menu(menu, tearoff = 0)
+        menu.add_cascade(label ='Tooles', menu = tooles)
+        def firefox(): 
+            link = 'https://www.google.com'
+            firefox = webbrowser.Mozilla("firefox")
+            firefox.open(link)
+        tooles.add_command(label ='open firefox', command = firefox)
+
+        def sqlmap():
+            F2 = Frame(self.root, bd=8, relief=GROOVE, bg="#d89239"  )
+            F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+            Hacher_title = Label(F2, text="work apron sqlmap", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="#ba6a04", fg="black").pack(fill=X)
+            Hacher_des = Label(F2, text="sqlmap is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking \nover of database servers. It comes with a powerful detection engine, many niche features for the ultimate penetration tester, and a broad range of \nswitches including database fingerprinting, over data fetching from the database, accessing the underlying file system,\n and executing commands on the operating system via out-of-band connections.", font=("arial", 10, "bold"), bd=7, relief=GROOVE, bg="white", fg="#404040").pack(fill=X)
+            Hacher_part = LabelFrame(F2, text="commands sqlmap", font=("arial", 10, "bold"), bd=5, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+            Hacher_part.place(x=2, y=130, relwidth=0.26, relheight=0.77)
+            p_part = Label(F2, text="Here is the workspace where commands are entered", font=("arial", 15, "bold"), bd=5, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+            p_part.place(relx = 0.63, rely = 0.30, relwidth=0.73,anchor = 's')
+            terminal = Terminal(pady=2, padx=2, relief=GROOVE, bg="#404040",fg = "white")
+            terminal.shell = True
+            terminal.place(x=580, y=256, relwidth=0.54, relheight=0.55)
+            p = Label(F2, text="Download sqlmap by clicking", font=("arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.20, rely = 0.27,anchor = NE)
+            b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
+                    command=lambda: terminal.run_command(f'pip install sqlmap ', 'y')).place(relx = 0.23, rely = 0.32,anchor = 's')
+
+            p = Label(F2, text="To get a list of all options and\nswitches clicking:", font=("arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.20, rely = 0.31,anchor = NE)
+
+            b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
+                    command=lambda: terminal.run_command(f'sqlmap -hh', 'y')).place(relx = 0.23, rely = 0.38,anchor = 's')
+
+            pat = Label(F2, text="Target URL. Option: -u or --url\nRun sqlmap against a single target URL.\n This option requires a target\nURL in following form:\nhttp(s)://targeturl[:port]/[...]\nFor example:", font=( "arial", 9, "bold"), fg="white", bg="#404040").place(relx = 0.13, rely = 0.54,anchor = 's')
+
+            pat1 = Label(F2, text="$sqlmap -u 'http://www.target.com/vuln.php?id=1'", font=("arial", 7, "bold"), fg="white", bg="#404040").place(relx = 0.13, rely = 0.56,anchor = 's')
+
+            p2 = Label(F2, text="to run simple sqlmap", font=( "arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.16, rely = 0.59,anchor = NE)
+            p3 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
+                    command=lambda: terminal.run_command(f'sqlmap --wizard', 'y')).place(relx = 0.23, rely = 0.63,anchor = 's')
+            def callback(url):
+                webbrowser.open_new(url)
+            link1 = Label(F2, text="for further use.", fg="blue", cursor="hand2")
+            link1.place(relx = 0.13, rely = 0.67,anchor = 's')
+            link1.bind("<Button-1>", lambda e: callback("https://github.com/sqlmapproject/sqlmap/wiki/Usage"))
+            link2 = Label(F2, text="to visit the home page", fg="blue", cursor="hand2")
+            link2.place(relx = 0.13, rely = 0.73,anchor = 's')
+            link2.bind("<Button-1>", lambda e: callback("https://github.com/sqlmapproject/sqlmap/"))
+        tooles.add_command(label ='sqlmap', command = sqlmap)
+        tooles.add_command(label ='commix', command = None)
+        tooles.add_command(label ='nmap', command = None)
+        tooles.add_separator()
+        tooles.add_command(label ='amass', command = None)
+        tooles.add_command(label ='nikto', command = None)
+#########################################################################################################
         # Adding Help Menu
         help_ = Menu(menu, tearoff = 0)
+        def Help(): 
+            link = 'https://github.com/abrahim7112/hackers'
+            firefox = webbrowser.Mozilla("firefox")
+            firefox.open(link)
+        def Use(): 
+            link = 'https://github.com/abrahim7112/hackers/wiki'
+            firefox = webbrowser.Mozilla("firefox")
+            firefox.open(link)
         menu.add_cascade(label ='Help', menu = help_)
-        help_.add_command(label ='Tk Help', command = None)
-        help_.add_command(label ='Demo', command = None)
+        help_.add_command(label ='Hackers Help', command = Help)
+        help_.add_command(label ='Use Help', command = Use)
         help_.add_separator()
-        help_.add_command(label ='About Tk', command = None)
+        help_.add_command(label ='About hackersf    ', command = None)
         
         
 ###########################################################################################################
@@ -71,27 +130,7 @@ class home:
             F2 = Frame(self.root, bd=8, relief=GROOVE,bg="#048920")
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
             Hacher_title = Label(F2, text="sql injection", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#048920", fg="white").pack(fill=X)
-            def Time_Based():
-                F2 = Frame(self.root, bd=8, relief=GROOVE)
-                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="sql injection", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="yellow", fg="black").pack(fill=X)
-                def get_quote():
-                    r = requests.get('https://hackerone.com/users/sign_in')
-                    data = r.text
-                    text_box.delete('1.0', END)
-                    text_box.insert(END, data)  
-                text_box = Text(F2, height=10, width=50)
-                get_button = Button(F2, text="Get Quote", command=get_quote)
-                text_box.pack()
-                get_button.pack() 
-            def p():
-                from sql import Remotephp1
-                r = Remotephp1
-            def CVE_2022_31101sql():
-                from sql import CVE_2022_31101sql
-                #CVE_2022_31101sql()
+            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#048920", fg="white").pack(fill=X) 
             Hacher_tooles = LabelFrame(F2, text="The Description", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
@@ -101,25 +140,33 @@ class home:
             Hacher_title = Label(F2, text="SQL Injection : In this section, we'll explain what SQL injection is, describe some common examples, explain how to find \nand exploit various kinds of SQL injection vulnerabilities, and summarize how to prevent SQL injection.\nWhat is SQL injection (SQLi)?\nSQL injection is a web security vulnerability that allows an attacker to \ninterfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to \nretrieve. This might include data belonging to other users, or any other data that the application itself is able to\n access. In many cases, an attacker can modify or delete this data, causing persistent changes to the application's\n content or behavior.In some situations, an attacker can escalate an SQL injection \nattack to compromise the underlying server or other back-end infrastructure, or perform a denial-of-service attack.", font=(
             "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#7ea982", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
-            
-            b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", 
-                                                 relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
+
+            def BlindSQL1():
+                from sql import BlindSQL1
+            b2_button = Button(F2, text ="BlindSQL1",command = BlindSQL1, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix",command = p, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
-                                                  relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
+            def p():
+                from sql import Remotephp1
+                r = Remotephp1
+            b4_button = Button(F2, text ="CVE-2023-0669",command = p, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="CVE-2022-31101sql",command = CVE_2022_31101sql,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
-                                                  relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
+            def CVE_2022_31101sql():
+                from sql import CVE_2022_31101sql
+            b5_button = Button(F2, text ="CVE-2022-31101sql",command = CVE_2022_31101sql,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", 
-                                                 relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", 
-                                                  relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
-                                                  relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
+            def BlindSQLi0day():
+                from sql import BlindSQLi0day
+            b6_button = Button(F2, text ="BlindSQLi0day",command =BlindSQLi0day , fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
+
+            def CVE_2012_5967():
+                from sql import CVE_2012_5967
+            b6_button = Button(F2, text ="CVE_2012_5967",command =CVE_2012_5967 , fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
+
+            def CVE_2016_2386SQL():
+                from sql import CVE_2016_2386SQL
+            b2_button = Button(F2, text ="CVE_2016_2386SQL",command = CVE_2016_2386SQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 
 ####################################################################################
 
@@ -127,24 +174,31 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
 
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
-                                          relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
+            def CVE_2022_24707sql():
+                from sql import CVE_2022_24707sql
+            b2_button = Button(F2, text ="CVE_2022_24707sql",command = CVE_2022_24707sql, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", 
-                                          relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
+            def databases():
+                from sql import databases
+            b4_button = Button(F2, text ="databases",command = databases, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
-                                           relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
+            def first_available_hash():
+                from sql import first_available_hash
+            b5_button = Button(F2, text ="first_available_hash",command = first_available_hash, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
-                                            relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE,
-                                                            bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
+            def loginaspSQL():
+                from sql import loginaspSQL
+            b6_button = Button(F2, text ="loginaspSQL",command = loginaspSQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
+
+            def MicrosoftSQLServer():
+                from sql import MicrosoftSQLServer
+            b6_button = Button(F2, text ="MicrosoftSQLServer",command = MicrosoftSQLServer, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",
-                                                          relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
+            def MultipleSQL():
+                from sql import MultipleSQL
+            b2_button = Button(F2, text ="MultipleSQL",command = MultipleSQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -152,20 +206,31 @@ class home:
             Hacher_s = LabelFrame(F2, text="Tooles ", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", 
-                                                      relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
+            def NoSQL():
+                from sql import NoSQL
+            b2_button = Button(F2, text ="NoSQL",command = NoSQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
+            def PHP_MySQL():
+                from sql import PHP_MySQL
+            b4_button = Button(F2, text ="PHP_MySQL",command = PHP_MySQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
+            def PrivilegeEscalation():
+                from sql import PrivilegeEscalation
+            b5_button = Button(F2, text ="PrivilegeEscalation",command = PrivilegeEscalation, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
+            def SQL1InjectionRemote():
+                from sql import SQL1InjectionRemote
+            b6_button = Button(F2, text ="SQL1InjectionRemote", command =SQL1InjectionRemote ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
+
+            def wordpressx_sql():
+                from sql import wordpressx_sql
+            b6_button = Button(F2, text ="wordpressx_sql",command = wordpressx_sql, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
+            def Webspell_wCMS_Clanscript():
+                from sql import Webspell_wCMS_Clanscript
+            b2_button = Button(F2, text ="Webspell_wCMS_Clanscript",command = Webspell_wCMS_Clanscript, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -174,21 +239,33 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
 
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
+            def UnauthenticatedSQL():
+                from sql import UnauthenticatedSQL
+            b2_button = Button(F2, text ="UnauthenticatedSQL",command = UnauthenticatedSQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
+            def Symantec_Web_Gateway():
+                from sql import Symantec_Web_Gateway
+            b4_button = Button(F2, text ="Symantec_Web_Gateway",command = Symantec_Web_Gateway, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
+            def SQLSA_CORE_2014():
+                from sql import SQLSA_CORE_2014
+            b5_button = Button(F2, text ="SQLSA_CORE_2014",command = SQLSA_CORE_2014, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
-  
-           # b6_button = Button(F2, text ="Greenplum", fg ="black",width=20, bd=7, font="arial 15 bold", relief=GROOVE, bg="brown").place(relx = 0.55, rely = 0.80,anchor = NE)#, , , , , , , , , , , H2, HSQLDB, IBM DB2, Informix, InterSystems Cache, Iris, MariaDB, Mckoi, MemSQL, Microsoft Access, Microsoft SQL Server, MimerSQL, MonetDB, MySQL, Oracle, Percona, PostgreSQL, Presto, Raima Database Manager, SAP MaxDB, SQLite, Sybase, TiDB, Vertica, Virtuoso, Yellowbrick, YugabyteDB
+            def SQLPoC():
+                from sql import SQLPoC
+            b6_button = Button(F2, text ="SQLPoC", command = SQLPoC,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
 
+            def SQLPathDisclosure():
+                from sql import SQLPathDisclosure
+            b6_button = Button(F2, text ="SQLPathDisclosure", command =SQLPathDisclosure,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
+            
+            def SQLInjectionRemote():
+                from sql import SQLInjectionRemote
+            b2_button = Button(F2, text ="SQLInjectionRemote",command = SQLInjectionRemote, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
+  
+          
 ###########################################################################################################
 
 ###########################################################################################################
@@ -318,23 +395,7 @@ class home:
             F2 = Frame(self.root, bd=8, relief=GROOVE, bg="#9c6105")
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
             Hacher_title = Label(F2, text="Command injection", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#9c6105", fg="white").pack(fill=X)
-            def Time_Based():
-                F2 = Frame(self.root, bd=8, relief=GROOVE)
-                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="sql injection", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="yellow", fg="black").pack(fill=X)
-                def get_quote():
-                    r = requests.get('https://hackerone.com/users/sign_in')
-                    data = r.text
-                    text_box.delete('1.0', END)
-                    text_box.insert(END, data)  
-                text_box = Text(F2, height=10, width=50)
-                get_button = Button(F2, text="Get Quote", command=get_quote)
-  
-                text_box.pack()
-                get_button.pack() 
-                 
+            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#9c6105", fg="white").pack(fill=X)   
             Hacher_tooles = LabelFrame(F2, text="The Description", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
@@ -345,18 +406,31 @@ class home:
             "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#be8f47", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
-            b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
+            def Apache_2017_5638():
+                from comment import Apache_2017_5638
+            b2_button = Button(F2, text ="Apache_2017_5638",command = Apache_2017_5638, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
+            def AuthenticationBypass():
+                from comment import AuthenticationBypass
+            b4_button = Button(F2, text ="AuthenticationBypass",command =AuthenticationBypass, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
+            def Belkin_Router_AC1200():
+                from comment import Belkin_Router_AC1200
+            b5_button = Button(F2, text ="Belkin_Router",command =Belkin_Router_AC1200,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
+            def COM_JOOMANAGER():
+                from comment import COM_JOOMANAGER
+            b6_button = Button(F2, text ="COM_JOOMANAGER",command =COM_JOOMANAGER, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
+
+            def CommandInjection():
+                from comment import  CommandInjection 
+            b6_button = Button(F2, text ="CommandInjection",command =CommandInjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
+            def Cve_2012_1823():
+                from comment import Cve_2012_1823
+            b2_button = Button(F2, text ="Cve_2012_1823",command =Cve_2012_1823, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 
 ####################################################################################
 
@@ -364,18 +438,31 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
 
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
+            def CVE_2017_14143():
+                from comment import CVE_2017_14143
+            b2_button = Button(F2, text ="CVE_2017_14143",command =CVE_2017_14143, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
+            def CVE_2017_14738():
+                from comment import CVE_2017_14738
+            b4_button = Button(F2, text ="CVE_2017_14738",command =CVE_2017_14738, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
+            def CVE_2021_24347():
+                from comment import CVE_2021_24347
+            b5_button = Button(F2, text ="CVE_2021_24347",command =CVE_2021_24347, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
+            def CVE_2021_35464():
+                from comment import CVE_2021_35464
+            b6_button = Button(F2, text ="CVE_2021_35464",command =CVE_2021_35464, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
+
+            def CVE_2022_36446():
+                from comment import CVE_2022_36446
+            b6_button = Button(F2, text ="CVE_2022_36446",command =CVE_2022_36446, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
+            def Imperva_SecureSphere():
+                from comment import Imperva_SecureSphere
+            b2_button = Button(F2, text ="Imperva_SecureSphere",command =Imperva_SecureSphere, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -384,18 +471,30 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
 
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
+            def loneferret_of_Offensive():
+                from comment import loneferret_of_Offensive
+            b2_button = Button(F2, text ="loneferret_Offensive",command =loneferret_of_Offensive, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
+            def ManageEngine_opManager():
+                from comment import ManageEngine_opManager
+            b4_button = Button(F2, text ="ManageEngine_Manager",command =ManageEngine_opManager, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
+            def MicrosoftRemote():
+                from comment import MicrosoftRemote
+            b5_button = Button(F2, text ="MicrosoftRemote",command =MicrosoftRemote, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
+            def Object_Injection_header():
+                from comment import Object_Injection_header
+            b6_button = Button(F2, text ="Object_Injection",command =Object_Injection_header, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
+            def OctoBot_WebInterface():
+                from comment import OctoBot_WebInterface
+            b6_button = Button(F2, text ="OctoBot_WebInterface",command =OctoBot_WebInterface, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
+            def PHPObjectInjection():
+                from comment import PHPObjectInjection
+            b2_button = Button(F2, text ="PHPObjectInjection",command =PHPObjectInjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -404,18 +503,31 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
 
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
+            def RCE_Authenticated():
+                from comment import RCE_Authenticated
+            b2_button = Button(F2, text ="RCE_Authenticated",command =RCE_Authenticated, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
           
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
+            def RCEforUnitrends():
+                from comment import RCEforUnitrends
+            b4_button = Button(F2, text ="RCEforUnitrends",command =RCEforUnitrends, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
+            def RCE_for_Unitrends_UEB():
+                from comment import RCE_for_Unitrends_UEB
+            b5_button = Button(F2, text ="RCE_Unitrends_UEB",command =RCE_for_Unitrends_UEB, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
+            def Unauthenticated_root():
+                from comment import Unauthenticated_root
+            b6_button = Button(F2, text ="Unauthenticated_root",command =Unauthenticated_root, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
+
+            def UnauthenticatedEmail():
+                from comment import UnauthenticatedEmail
+            b6_button = Button(F2, text ="UnauthenticatedEmail",command =UnauthenticatedEmail, fg ="#ccc4c4",width=18, bd=6, font="arial 13 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
+            def zerologon_tester():
+                from comment import zerologon_tester
+            b2_button = Button(F2, text ="zerologon_tester",command =zerologon_tester, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 
@@ -550,110 +662,6 @@ class home:
 
 ###########################################################################################################
 
-        def profile():
-            F2 = Frame(self.root, bd=8, relief=GROOVE , bg="#105392" )
-            F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-            Hacher_title = Label(F2, text="working", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#105392", fg="white").pack(fill=X)
-            def Time_Based():
-                F2 = Frame(self.root, bd=8, relief=GROOVE)
-                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="sql injection", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="yellow", fg="black").pack(fill=X)
-                def get_quote():
-                    r = requests.get('https://hackerone.com/users/sign_in')
-                    data = r.text
-                    #quote = data['content']
-                    text_box.delete('1.0', END)
-                    text_box.insert(END, data)  
-                text_box = Text(F2, height=10, width=50)
-                get_button = Button(F2, text="Get Quote", command=get_quote)
-  
-                text_box.pack()
-                get_button.pack() 
-                 
-            Hacher_tooles = LabelFrame(F2, text="The Description", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
-            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 10, "bold"), bd=7, relief=GROOVE, bg="#4e88be", fg="#404040")#.pack(fill=X)
-            Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
-            
-            b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
-
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles Scan", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
-
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
-
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
-
 ###########################################################################################################
 
 ###########################################################################################################
@@ -777,22 +785,8 @@ class home:
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
             Hacher_title = Label(F2, text="denial of service", font=(
             "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#92147b", fg="white").pack(fill=X)
-            def Time_Based():
-                F2 = Frame(self.root, bd=8, relief=GROOVE)
-                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="sql injection", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="yellow", fg="black").pack(fill=X)
-                def get_quote():
-                    r = requests.get('https://hackerone.com/users/sign_in')
-                    data = r.text
-                    #quote = data['content']
-                    text_box.delete('1.0', END)
-                    text_box.insert(END, data)  
-                text_box = Text(F2, height=10, width=50)
-                get_button = Button(F2, text="Get Quote", command=get_quote)
-  
-                text_box.pack()
-                get_button.pack() 
+            def Overload_DoS():
+                from service import Overload_DoS
                  
             Hacher_tooles = LabelFrame(F2, text="The Description", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
@@ -804,7 +798,7 @@ class home:
             "arial", 13, "bold"), bd=7, relief=GROOVE, bg="#af559f", fg="white")
             Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
             
-            b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
+            b2_button = Button(F2, text ="Overload_DoS",command = Overload_DoS, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
           
             b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
             
@@ -890,17 +884,17 @@ class home:
 
 
         def injection():
-            F2 = Frame(self.root, bd=8, relief=GROOVE, bg="#6e0f03")
+            F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
             Hacher_title = Label(F2, text="shaw all injection", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#6e0f03", fg="white").pack(fill=X)
+            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
                  
             Hacher_tooles = LabelFrame(F2, text="All Payloads", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
             Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
 
             def xssinjection():
-                F3 = Frame(F2, bd=8, relief=GROOVE, bg="#6e0f03")
+                F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
                 F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
                 self.txtarea = open(r"xss-injection.txt", "r") 
                 data = self.txtarea.read()
@@ -909,10 +903,11 @@ class home:
                 scroll_y.pack(side=RIGHT, fill=Y)
                 scroll_y.config(command=self.txtarea.yview)
                 self.txtarea.insert(END, data)
-                self.txtarea.pack(fill=BOTH,expand=1) 
+                self.txtarea.pack(fill=BOTH,expand=1)
+                self.txtarea.configure(state ='disabled')
             
             def sqlinjection():
-                F3 = Frame(F2, bd=8, relief=GROOVE, bg="#6e0f03")
+                F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
                 F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
                 self.txtarea = open(r"sql-injection-payload-list.txt", "r") 
                 data = self.txtarea.read()
@@ -922,9 +917,10 @@ class home:
                 scroll_y.config(command=self.txtarea.yview)
                 self.txtarea.insert(END, data)
                 self.txtarea.pack(fill=BOTH,expand=1) 
+                self.txtarea.configure(state ='disabled')
             
             def commamd_injection():
-                F3 = Frame(F2, bd=8, relief=GROOVE, bg="#6e0f03")
+                F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
                 F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
                 self.txtarea = open(r"Command-injection.txt", "r") 
                 data = self.txtarea.read()
@@ -934,9 +930,10 @@ class home:
                 scroll_y.config(command=self.txtarea.yview)
                 self.txtarea.insert(END, data)
                 self.txtarea.pack(fill=BOTH,expand=1) 
+                self.txtarea.configure(state ='disabled')
             
             def xml_injection():
-                F3 = Frame(F2, bd=8, relief=GROOVE, bg="#6e0f03")
+                F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
                 F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
                 self.txtarea = open(r"xxe-injection-payload-list.txt", "r") 
                 data = self.txtarea.read()
@@ -945,10 +942,11 @@ class home:
                 scroll_y.pack(side=RIGHT, fill=Y)
                 scroll_y.config(command=self.txtarea.yview)
                 self.txtarea.insert(END, data)
-                self.txtarea.pack(fill=BOTH,expand=1) 
+                self.txtarea.pack(fill=BOTH,expand=1)
+                self.txtarea.configure(state ='disabled')
             
             def ddos():
-                F3 = Frame(F2, bd=8, relief=GROOVE, bg="#6e0f03")
+                F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
                 F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
                 self.txtarea = open(r"dos-doss.txt", "r") 
                 data = self.txtarea.read()
@@ -958,9 +956,10 @@ class home:
                 scroll_y.config(command=self.txtarea.yview)
                 self.txtarea.insert(END, data)
                 self.txtarea.pack(fill=BOTH,expand=1) 
+                self.txtarea.configure(state ='disabled')
 
             def server_side():
-                F3 = Frame(F2, bd=8, relief=GROOVE, bg="#6e0f03")
+                F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
                 F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
                 self.txtarea = open(r"server-side-injection.txt", "r") 
                 data = self.txtarea.read()
@@ -969,11 +968,12 @@ class home:
                 scroll_y.pack(side=RIGHT, fill=Y)
                 scroll_y.config(command=self.txtarea.yview)
                 self.txtarea.insert(END, data)
-                self.txtarea.pack(fill=BOTH,expand=1) 
+                self.txtarea.pack(fill=BOTH,expand=1)
+                self.txtarea.configure(state ='disabled')
                 
 
             def Server_side_template():
-                F3 = Frame(F2, bd=8, relief=GROOVE, bg="#6e0f03")
+                F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
                 F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
                 self.txtarea = open(r"Server-side-template.txt", "r") 
                 data = self.txtarea.read()
@@ -983,12 +983,13 @@ class home:
                 scroll_y.config(command=self.txtarea.yview)
                 self.txtarea.insert(END, data)
                 self.txtarea.pack(fill=BOTH,expand=1)
+                self.txtarea.configure(state ='disabled')
 
             def back():
                 F3 = injection()
              
             Hacher_s = LabelFrame(F2, text="prat injection", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#6e0f03", fg="#ccc4c4")
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
             Hacher_s.place(x=2, y=49, relwidth=0.24, relheight=0.92)
             p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
@@ -996,26 +997,24 @@ class home:
             p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
-            b2_button = Button(F2, text ="xss injection",command = xssinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.15,anchor = NE)
+            b2_button = Button(F2, text ="xss injection",command = xssinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
           
-            b4_button = Button(F2, text ="sql injection",command = sqlinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx =0.23, rely = 0.24,anchor = NE)
+            b4_button = Button(F2, text ="sql injection",command = sqlinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
             
 
-            b5_button = Button(F2, text ="commamd injection",command = commamd_injection,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.33,anchor = NE)
+            b5_button = Button(F2, text ="commamd injection",command = commamd_injection,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
             
   
-            b6_button = Button(F2, text ="xml injection",command = xml_injection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.42,anchor = NE)
+            b6_button = Button(F2, text ="xml injection",command = xml_injection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.42,anchor = NE)
 
-            b6_button = Button(F2, text ="dos ddos",command = ddos, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.51,anchor = NE)
+            b6_button = Button(F2, text ="dos ddos",command = ddos, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.51,anchor = NE)
             
-            b2_button = Button(F2, text ="server-side-injection",command = server_side, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.60,anchor = NE)
+            b2_button = Button(F2, text ="server-side-injection",command = server_side, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.60,anchor = NE)
             
-            b2_button = Button(F2, text ="Server-side-template",command = Server_side_template, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.69,anchor = NE)
-          
-            #b4_button = Button(F2, text ="commix",command = sqlinjection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.78,anchor = NE)
+            b2_button = Button(F2, text ="Server-side-template",command = Server_side_template, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.69,anchor = NE)
             
   
-            b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#6e0f03").place(relx = 0.23, rely = 0.90,anchor = NE)
+            b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
             
 
 ####################################################################################
@@ -1043,53 +1042,96 @@ class home:
             Hacher_s = LabelFrame(F2, text="CVE-2023 Exploits", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=45, relwidth=0.24, relheight=0.92)
-            b2_button = Button(F2, text ="CVE-2023-0861", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)            
-  
-            b5_button = Button(F2, text ="CVE-2023-1671",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.23,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="CVE-2023-1671", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.31,anchor = NE)
-            b6_button = Button(F2, text ="CVE-2023-2825", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.39,anchor = NE)
-            
-            b2_button = Button(F2, text ="CVE-2023-2825", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.47,anchor = NE)
+
+            def CVE_2023_0861():
+                from CVE_2023_poc import CVE_2023_0861
+            b2_button = Button(F2, text ="CVE-2023-0861",command = CVE_2023_0861,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)  
           
-            b4_button = Button(F2, text ="CVE-2023-2868", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.55,anchor = NE)
+            def CVE_2023_1671():
+                from CVE_2023_poc import CVE_2023_1671
+            b5_button = Button(F2, text ="CVE-2023-1671",command = CVE_2023_1671,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.23,anchor = NE)
             
   
-            b5_button = Button(F2, text ="CVE-2023-2877",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.63,anchor = NE)
+            def CVE_2023_1671_POC():
+                from CVE_2023_poc import CVE_2023_1671_POC
+            b6_button = Button(F2, text ="CVE-2023-1671",command =  CVE_2023_1671_POC,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.31,anchor = NE)
+
+            def CVE_2023_2825_POC():
+                from CVE_2023_poc import CVE_2023_2825_POC
+            b6_button = Button(F2, text ="CVE-2023-2825",command = CVE_2023_2825_POC, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.39,anchor = NE)
+            
+            def CVE_2023_2825():
+                from CVE_2023_poc import CVE_2023_2825
+            b2_button = Button(F2, text ="CVE-2023-2825",command = CVE_2023_2825, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.47,anchor = NE)
+          
+            def CVE_2023_2868():
+                from CVE_2023_poc import poc_cve_2023_2868
+            b4_button = Button(F2, text ="CVE-2023-2868",command = CVE_2023_2868 , fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.55,anchor = NE)
             
   
-            b6_button = Button(F2, text ="CVE-2023-2982", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.71,anchor = NE)
-            b6_button = Button(F2, text ="CVE-2023-2986", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.79,anchor = NE)
+            def CVE_2023_2877():
+                from CVE_2023_poc import CVE_2023_2877
+            b5_button = Button(F2, text ="CVE-2023-2877",command =CVE_2023_2877 ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.63,anchor = NE)
             
-            b2_button = Button(F2, text ="CVE-2023-3460", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.87,anchor = NE)
+            def CVE_2023_2982():
+                from CVE_2023_poc import CVE_2023_2982
+            b6_button = Button(F2, text ="CVE-2023-2982",command = CVE_2023_2982, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.71,anchor = NE)
+
+            def CVE_2023_2986():
+                from CVE_2023_poc import poc
+            b6_button = Button(F2, text ="CVE-2023-2986",command = CVE_2023_2986, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.79,anchor = NE)
+            
+            def CVE_2023_3460():
+                from CVE_2023_poc import CVE_2023_3460
+            b2_button = Button(F2, text ="CVE-2023-3460",command = CVE_2023_3460, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.87,anchor = NE)
 
 ####################################################################################
 
             Hacher_s = LabelFrame(F2, text="CVE-2023 poc", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=252, y=45, relwidth=0.24, relheight=0.92)
+ 
+            def CVE_2023_3519():
+                from CVE_2023_poc import CVE_2023_3519_checker
+            b2_button = Button(F2, text ="cve-2023-3519",command = CVE_2023_3519, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.15,anchor = NE)
+          
+            def CVE_2023_10608():
+                from CVE_2023_poc import CVE_2023_10608
+            b5_button = Button(F2, text ="cve-2023-10608",command =CVE_2023_10608 ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.23,anchor = NE)
+            
+            def CVE_2023_20110():
+                from CVE_2023_poc import CVE_2023_20110
+            b6_button = Button(F2, text ="CVE-2023-20110",command = CVE_2023_20110, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.31,anchor = NE)
 
-            b2_button = Button(F2, text ="cve-2023-3519", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.15,anchor = NE)
+            def CVE_2023_20887():
+                from CVE_2023_poc import CVE_2023_20887
+            b6_button = Button(F2, text ="CVE-2023-20887", command = CVE_2023_20887,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.39,anchor = NE)
+            
+            def CVE_2023_21554():
+                from CVE_2023_poc import CVE_2023_21554
+            b2_button = Button(F2, text ="CVE-2023-21554",command = CVE_2023_21554, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.47,anchor = NE)
           
-            b5_button = Button(F2, text ="cve-2023-10608",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.23,anchor = NE)
+            def CVE_2023_21707():
+                from CVE_2023_poc import CVE_2023_21707
+            b4_button = Button(F2, text ="CVE-2023-21707",command = CVE_2023_21707, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.55,anchor = NE)
             
   
-            b6_button = Button(F2, text ="CVE-2023-20110", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.31,anchor = NE)
-            b6_button = Button(F2, text ="CVE-2023-20887", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.39,anchor = NE)
-            
-            b2_button = Button(F2, text ="CVE-2023-21554", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.47,anchor = NE)
-          
-            b4_button = Button(F2, text ="CVE-2023-21707", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.55,anchor = NE)
+            def CVE_2023_21716poc():
+                from CVE_2023_poc import CVE_2023_21716poc
+            b5_button = Button(F2, text ="CVE-2023-21716",command =CVE_2023_21716poc ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.63,anchor = NE)
             
   
-            b5_button = Button(F2, text ="CVE-2023-21716",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.63,anchor = NE)
+            def CVE_2023_21716():
+                from CVE_2023_poc import CVE_2023_21716
+            b6_button = Button(F2, text ="CVE-2023-21716",command = CVE_2023_21716, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.71,anchor = NE)
+
+            def CVE_2023_21837():
+                from CVE_2023_poc import CVE_2023_21837
+            b6_button = Button(F2, text ="CVE-2023-21837",command = CVE_2023_21837, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.79,anchor = NE)
             
-  
-            b6_button = Button(F2, text ="CVE-2023-21716", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.71,anchor = NE)
-            b6_button = Button(F2, text ="CVE-2023-21837", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.79,anchor = NE)
-            
-            b2_button = Button(F2, text ="CVE-2023-21839", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.87,anchor = NE)
+            def CVE_2023_21839():
+                from CVE_2023_poc import CVE_2023_21839
+            b2_button = Button(F2, text ="CVE-2023-21839",command = CVE_2023_21839, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.87,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -1098,26 +1140,48 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=501, y=45, relwidth=0.24, relheight=0.92)
 
-            b2_button = Button(F2, text ="CVE-2023-22621", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.15,anchor = NE)
+            def CVE_2023_22621():
+                from CVE_2023_poc import CVE_2023_22621
+            b2_button = Button(F2, text ="CVE-2023-22621",command =CVE_2023_22621 , fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.15,anchor = NE)
           
-            b5_button = Button(F2, text ="CVE-2023-22809",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.23,anchor = NE)
+            def CVE_2023_22809():
+                from CVE_2023_poc import CVE_2023_22809
+            b5_button = Button(F2, text ="CVE-2023-22809",command = CVE_2023_22809,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.23,anchor = NE)
             
   
-            b6_button = Button(F2, text ="CVE-2023-22884", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.31,anchor = NE)
-            b6_button = Button(F2, text ="CVE-2023-22906", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.39,anchor = NE)
+            def CVE_2023_22884():
+                from CVE_2023_poc import CVE_2023_22884_Airflow_SQLi
+            b6_button = Button(F2, text ="CVE-2023-22884",command = CVE_2023_22884, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.31,anchor = NE)
+
+            def CVE_2023_22906():
+                from CVE_2023_poc import CVE_2023_22906
+            b6_button = Button(F2, text ="CVE-2023-22906", command = CVE_2023_22906,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.39,anchor = NE)
             
-            b2_button = Button(F2, text ="CVE-2023-22960", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.47,anchor = NE)
+            def CVE_2023_22960():
+                from CVE_2023_poc import CVE_2023_22960
+            b2_button = Button(F2, text ="CVE-2023-22960",command = CVE_2023_22960, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.47,anchor = NE)
           
-            b4_button = Button(F2, text ="CVE-2023-23333", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.55,anchor = NE)
+            def CVE_2023_23333():
+                from CVE_2023_poc import CVE_2023_23333
+            b4_button = Button(F2, text ="CVE-2023-23333", command = CVE_2023_23333,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.55,anchor = NE)
             
   
-            b5_button = Button(F2, text ="CVE-2023-23397",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.63,anchor = NE)
+            def CVE_2023_23397():
+                from CVE_2023_poc import CVE_2023_23397
+            b5_button = Button(F2, text ="CVE-2023-23397",command = CVE_2023_23397,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.63,anchor = NE)
             
   
-            b6_button = Button(F2, text ="CVE-2023-23488", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.71,anchor = NE)
-            b6_button = Button(F2, text ="CVE-2023-23752", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.79,anchor = NE)
+            def CVE_2023_23488():
+                from CVE_2023_poc import CVE_2023_23488
+            b6_button = Button(F2, text ="CVE-2023-23488",command = CVE_2023_23488, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.71,anchor = NE)
+
+            def CVE_2023_23752():
+                from CVE_2023_poc import cve_2023_23752_PoC
+            b6_button = Button(F2, text ="CVE-2023-23752", command = CVE_2023_23752,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.79,anchor = NE)
             
-            b2_button = Button(F2, text ="CVE-2023-24078", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.87,anchor = NE)
+            def CVE_2023_24078():
+                from CVE_2023_poc import CVE_2023_24078
+            b2_button = Button(F2, text ="CVE-2023-24078", command = CVE_2023_24078,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.87,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -1126,26 +1190,50 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=751, y=45, relwidth=0.24, relheight=0.92)
 
-            b2_button = Button(F2, text ="CVE-2023-24488", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.15,anchor = NE)
+            def CVE_2023_24488():
+                from CVE_2023_poc import CVE_2023_24488
+            b2_button = Button(F2, text ="CVE-2023-24488", command = CVE_2023_24488,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.15,anchor = NE)
           
-            b5_button = Button(F2, text ="CVE-2023-24489",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.23,anchor = NE)
+            def CVE_2023_24489():
+                from CVE_2023_poc import CVE_2023_24489_RCE
+            b5_button = Button(F2, text ="CVE-2023-24489",command =CVE_2023_24489 ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.23,anchor = NE)
             
   
-            b6_button = Button(F2, text ="CVE-2023-24775", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.31,anchor = NE)
-            b6_button = Button(F2, text ="CVE-2023-25136", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.39,anchor = NE)
+            def CVE_2023_24775():
+                from CVE_2023_poc import CVE_2023_24775
+            b6_button = Button(F2, text ="CVE-2023-24775",command = CVE_2023_24775, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.31,anchor = NE)
+
+            def CVE_2023_25136():
+                from CVE_2023_poc import CVE_2023_25136_POC
+            b6_button = Button(F2, text ="CVE-2023-25136",command = CVE_2023_25136, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.39,anchor = NE)
             
-            b2_button = Button(F2, text ="CVE-2023-27163", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.47,anchor = NE)
+            def CVE_2023_27163():
+                from CVE_2023_poc import CVE_2023_27163
+            b2_button = Button(F2, text ="CVE-2023-27163",command = CVE_2023_27163, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.47,anchor = NE)
           
-            b4_button = Button(F2, text ="CVE-2023-27350", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.55,anchor = NE)
+            def CVE_2023_27350():
+                from CVE_2023_poc import CVE_2023_27350
+            b4_button = Button(F2, text ="CVE-2023-27350",command = CVE_2023_27350, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.55,anchor = NE)
             
   
-            b5_button = Button(F2, text ="CVE-2023-27372",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.63,anchor = NE)
+            def CVE_2023_27372():
+                from CVE_2023_poc import CVE_2023_27372
+            b5_button = Button(F2, text ="CVE-2023-27372",command =CVE_2023_27372 ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.63,anchor = NE)
             
   
-            b6_button = Button(F2, text ="CVE-2023-27524", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.71,anchor = NE)
-            b6_button = Button(F2, text ="cve-2022-42475", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.79,anchor = NE)
+            def CVE_2023_27524():
+                from CVE_2023_poc import CVE_2023_27524
+            b6_button = Button(F2, text ="CVE-2023-27524",command = CVE_2023_27524, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.71,anchor = NE)
+            def cve_2022_42475():
+                from CVE_2023_poc import CVE_2022_42475_RCE_POC
+                return CVE_2022_42475_RCE_POC
+                     
+            b6_button = Button(F2, text ="cve-2022-42475",command = cve_2022_42475, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.79,anchor = NE)
+
+            def CVE_2023_28771_poc():
+                from CVE_2023_poc import CVE_2023_28771_poc
             
-            b2_button = Button(F2, text ="CVE-2023-28771", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.87,anchor = NE)
+            b2_button = Button(F2, text ="CVE-2023-28771",command = CVE_2023_28771_poc, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.87,anchor = NE)
             
 
 ###########################################################################################################
@@ -1178,9 +1266,17 @@ class home:
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
             Hacher_title = Label(F2, text="working", font=(
                 "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").pack(fill=X)
-       
+            Hacher_tooles = LabelFrame(F2, text="The Description", font=(
+                "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+            Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
+            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
+                "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+            Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
+            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
+            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#679a80", fg="white")
+            Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
 
-       
+
        
 ############################################################################################################
 ###########################################################################################################
@@ -1191,148 +1287,569 @@ class home:
 ###########################################################################################################
 ###########################################################################################################
 
-###########################################################################################################
-            def sqlmap():
-                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="#d89239"  )
+###########################################################################################################   
+            def redirect():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
                 F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="work apron sqlmap", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#ba6a04", fg="black").pack(fill=X)
-                Hacher_des = Label(F2, text="sqlmap is an open source penetration testing tool that automates the process of detecting and exploiting SQL injection flaws and taking \nover of database servers. It comes with a powerful detection engine, many niche features for the ultimate penetration tester, and a broad range of \nswitches including database fingerprinting, over data fetching from the database, accessing the underlying file system,\n and executing commands on the operating system via out-of-band connections.", font=(
-                "arial", 10, "bold"), bd=7, relief=GROOVE, bg="white", fg="#404040").pack(fill=X)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/redirect/alt-extensions-php.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
 
-                Hacher_part = LabelFrame(F2, text="commands sqlmap", font=(
-                "arial", 10, "bold"), bd=5, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-                Hacher_part.place(x=2, y=130, relwidth=0.26, relheight=0.77)
-                p_part = Label(F2, text="Here is the workspace where commands are entered", font=(
-                "arial", 15, "bold"), bd=5, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-                p_part.place(relx = 0.63, rely = 0.30, relwidth=0.73,anchor = 's')
-                terminal = Terminal(pady=2, padx=2, relief=GROOVE, bg="#404040",fg = "white")
-                terminal.shell = True
-                terminal.place(x=580, y=256, relwidth=0.54, relheight=0.55)
-                '''
-                def printInput():
-                    inp = inputtxt.get(1.0, "end-1c")
-                    lbl.config(text = inp)
-                inputtxt = tk.Text(F2,
-                         height = 5,
-                          width = 20)
-  
-                inputtxt.place(relx = 0.23, rely = 0.50,anchor = NE)
-  
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/redirect/file-ul-filter-bypass-microsoft-asp-filetype-bf.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
 
-                printButton = tk.Button(F2,
-                        text = "Print", 
-                        command = printInput)
-                printButton.place(relx = 0.23, rely = 0.66,anchor = NE)
-  
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/redirect/file-ul-filter-bypass-ms-php.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
 
-                lbl = tk.Label(F2, text = "")
-                lbl.place(relx = 0.23, rely = 0.80,anchor = NE)
-                '''
-                p = Label(F2, text="Download sqlmap by clicking", font=(
-                       "arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.20, rely = 0.27,anchor = NE)
+                def javascript_events():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/redirect/file-ul-filter-bypass-x-platform-generic.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
 
-                b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'pip install sqlmap ', 'y')).place(relx = 0.23, rely = 0.32,anchor = 's')
+                def js_inject():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/redirect/file-ul-filter-bypass-x-platform-php.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
 
-                p = Label(F2, text="To get a list of all options and\nswitches clicking:", font=(
-                       "arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.20, rely = 0.31,anchor = NE)
-
-                b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'sqlmap -hh', 'y')).place(relx = 0.23, rely = 0.38,anchor = 's')
-
-                pat = Label(F2, text="Target URL. Option: -u or --url\nRun sqlmap against a single target URL.\n This option requires a target\nURL in following form:\nhttp(s)://targeturl[:port]/[...]\nFor example:", font=(
-                       "arial", 9, "bold"), fg="white", bg="#404040").place(relx = 0.13, rely = 0.54,anchor = 's')
-
-                pat1 = Label(F2, text="$sqlmap -u 'http://www.target.com/vuln.php?id=1'", font=(
-                       "arial", 7, "bold"), fg="white", bg="#404040").place(relx = 0.13, rely = 0.56,anchor = 's')
-
-                p2 = Label(F2, text="to run simple sqlmap", font=(
-                       "arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.16, rely = 0.59,anchor = NE)
-                p3 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'sqlmap --wizard', 'y')).place(relx = 0.23, rely = 0.63,anchor = 's')
-                def callback(url):
-                    webbrowser.open_new(url)
-                link1 = Label(F2, text="for further use.", fg="blue", cursor="hand2")
-                link1.place(relx = 0.13, rely = 0.67,anchor = 's')
-                link1.bind("<Button-1>", lambda e: callback("https://github.com/sqlmapproject/sqlmap/wiki/Usage"))
-
-                link2 = Label(F2, text="to visit the home page", fg="blue", cursor="hand2")
-                link2.place(relx = 0.13, rely = 0.73,anchor = 's')
-                link2.bind("<Button-1>", lambda e: callback("https://github.com/sqlmapproject/sqlmap/"))
-
-               
-            def commix():
-                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="#d89239"  )
-                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="work apron commix", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#ba6a04", fg="black").pack(fill=X)
-                Hacher_des = Label(F2, text="Automated All-in-One OS Command Injection Exploitation ToolCommix \n(short for [comm]and [i]njection e[x]ploiter) is an open source penetration testing tool, written by Anastasios Stasinopoulos\n, that automates the detection and exploitation of command injection vulnerabilities.",   font=("arial", 10, "bold"), bd=7, relief=GROOVE, bg="white", fg="#404040").pack(fill=X)
-
-                Hacher_part = LabelFrame(F2, text="commands commix", font=(
-                "arial", 10, "bold"), bd=5, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-                Hacher_part.place(x=2, y=130, relwidth=0.26, relheight=0.77)
-                p_part = Label(F2, text="Here is the workspace where commands are entered", font=(
-                "arial", 15, "bold"), bd=5, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-                p_part.place(relx = 0.63, rely = 0.30, relwidth=0.73,anchor = 's')
-                terminal = Terminal(pady=2, padx=2, relief=GROOVE, bg="#404040",fg = "white")
-                terminal.shell = True
-                terminal.place(x=580, y=256, relwidth=0.54, relheight=0.55)
-                p = Label(F2, text="Download commix by clicking", font=(
-                       "arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.20, rely = 0.27,anchor = NE)
-
-                b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'pip install commix ', 'y')).place(relx = 0.23, rely = 0.32,anchor = 's')
-
-                p = Label(F2, text="To get a list of all options and\nswitches clicking:", font=(
-                       "arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.20, rely = 0.31,anchor = NE)
-
-                b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'commix -hh', 'y')).place(relx = 0.23, rely = 0.38,anchor = 's')
-
-                pat = Label(F2, text="Target URL. Option: -u or --url\nRun commix against a single target URL.\n This option requires a target\nURL in following form:\nhttp(s)://targeturl[:port]/[...]\nFor example:", font=(
-                       "arial", 9, "bold"), fg="white", bg="#404040").place(relx = 0.13, rely = 0.54,anchor = 's')
-
-                pat1 = Label(F2, text="$commix -u 'http://www.target.com/vuln.php?id=1'", font=(
-                       "arial", 7, "bold"), fg="white", bg="#404040").place(relx = 0.13, rely = 0.56,anchor = 's')
-
-                p2 = Label(F2, text="to run simple commix", font=(
-                       "arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.16, rely = 0.59,anchor = NE)
-                p3 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'commix --wizard', 'y')).place(relx = 0.23, rely = 0.63,anchor = 's')
-                def callback(url):
-                    webbrowser.open_new(url)
-                link1 = Label(F2, text="for further use.", fg="blue", cursor="hand2")
-                link1.place(relx = 0.13, rely = 0.67,anchor = 's')
-                link1.bind("<Button-1>", lambda e: callback("https://github.com/sqlmapproject/sqlmap/wiki/Usage"))
-
-                link2 = Label(F2, text="to visit the home page", fg="blue", cursor="hand2")
-                link2.place(relx = 0.13, rely = 0.73,anchor = 's')
-                link2.bind("<Button-1>", lambda e: callback("https://github.com/sqlmapproject/sqlmap/"))
-
-                 
-            Hacher_tooles = LabelFrame(F2, text="The Description", font=(
-                "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
-            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
-                "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#679a80", fg="white")
-            Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
-            
-            b2_button = Button(F2, text ="sqlmap",command = sqlmap, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
+                def quotationmarks():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/redirect/invalid-filenames-linux.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def urls_template():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/redirect/redirect-urls-template.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def redirect_injection():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/redirect/redirect-injection-template.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="alt-extensions-php",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
           
-            b4_button = Button(F2, text ="commix",command =commix, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
+                b4_button = Button(F2, text ="file-ul-filter-bypass",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="file-ul-filter-bypass",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+                b5_button = Button(F2, text ="bypass-x-platform-generic",command = javascript_events,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
+                b5_button = Button(F2, text ="bypass-x-platform-php",command = js_inject,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.49,anchor = NE)
+                b5_button = Button(F2, text ="invalid-filenames-linux",command = quotationmarks,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.58,anchor = NE)
+                b5_button = Button(F2, text ="urls_template",command = urls_template,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.66,anchor = NE)
+                b5_button = Button(F2, text ="injection-template",command = redirect_injection,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.74,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b2_button = Button(F2, text ="redirect",command = redirect, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
+#######################
+######################
+          
+            def sql_injection():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/sql-injection/exploit/db2-enumeration.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/sql-injection/payloads-sql-blind/payloads-sql-blind-MySQL-ORDER_BY.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/sql-injection/detect/MSSQL_blind.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def javascript_events():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/sql-injection/payloads-sql-blind/payloads-sql-blind-MySQL-WHERE.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def js_inject():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/sql-injection/exploit/postgres-enumeration.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def quotationmarks():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/sql-injection/payloads-sql-blind/payloads-sql-blind-MSSQL-INSERT.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def urls_template():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/sql-injection/payloads-sql-blind/payloads-sql-blind-MSSQL-WHERE.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def redirect_injection():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/sql-injection/payloads-sql-blind/payloads-sql-blind-MySQL-INSERT.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="db2-enumeration",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+   
+                b4_button = Button(F2, text ="MySQL-ORDER_BY",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+          
+                b5_button = Button(F2, text ="MSSQL_blind",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+                b5_button = Button(F2, text ="MySQL-WHERE",command = javascript_events,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
+                b5_button = Button(F2, text ="postgres-enumeration",command = js_inject,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.49,anchor = NE)
+                b5_button = Button(F2, text ="payloads-sql-blind",command = quotationmarks,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.58,anchor = NE)
+                b5_button = Button(F2, text ="sql-blind-MSSQL",command = urls_template,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.66,anchor = NE)
+                b5_button = Button(F2, text ="sql-blind-MySQL",command = redirect_injection,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.74,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+            b4_button = Button(F2, text ="sql-injection",command =sql_injection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
+            
+#############################
+#############################
+
+            def all_attacks():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def all_attacks_unix():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/all-attacks/all-attacks-unix.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def all_attacks_win():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/all-attacks/all-attacks-win.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def all_attacks_xplatform():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/all-attacks/all-attacks-xplatform.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="all_attacks_unix",command = all_attacks_unix, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="all_attacks_win",command = all_attacks_win, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="all_attacks_xplatform",command = all_attacks_xplatform,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b5_button = Button(F2, text ="all-attacks",command = all_attacks,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
             
   
-            b5_button = Button(F2, text ="beef",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
+#############################
+#############################
+
+            def authentication():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def php_magic_hashes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/authentication/php_magic_hashes.fuzz.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def alt_extensions_asp():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/authentication/alt-extensions-asp.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def alt_extensions_coldfusion():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/authentication/alt-extensions-coldfusion.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def alt_extensions_perl():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/authentication/alt-extensions-perl.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="php_magic_hashes",command = php_magic_hashes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="alt_extensions_asp",command = alt_extensions_asp, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
             
-  
-            b6_button = Button(F2, text ="dotdotpwn", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="abuse-ssl-bypass-waf", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
+
+                b5_button = Button(F2, text ="alt_extensions_coldfusion",command = alt_extensions_coldfusion,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+
+                b5_button = Button(F2, text ="alt_extensions_perl",command = alt_extensions_perl,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
             
-            b2_button = Button(F2, text ="jok3r", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b6_button = Button(F2, text ="authentication", command = authentication,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
+
+
+#############################
+#############################
+
+            def business_logic():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def CommonDebugParamNames():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/business-logic/CommonDebugParamNames.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def CommonMethodNames():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/business-logic/CommonMethodNames.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def DebugParams_Json():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/business-logic/DebugParams.Json.fuzz.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="CommonDebugParamNames",command = CommonDebugParamNames, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="CommonMethodNames",command = CommonMethodNames, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="DebugParams_Json",command = DebugParams_Json,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b6_button = Button(F2, text ="business-logic",command = business_logic,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
+            
+
+#############################
+#############################
+
+            def control_chars():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/control-chars/HexValsAllBytes.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/control-chars/imessage.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/control-chars/NullByteRepresentations.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="HexValsAllBytes",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="imessage",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="NullByteRepresentations",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b2_button = Button(F2, text ="control-chars",command = control_chars, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 
 ####################################################################################
 
@@ -1340,18 +1857,433 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
 
-            b2_button = Button(F2, text ="nmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
+#############################
+#############################
+
+            def disclosure_directory():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def directory_indexing():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/disclosure-directory/directory-indexing-generic.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def filenames_microsoft():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/disclosure-directory/invalid-filenames-microsoft.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def chars_microsoft():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/disclosure-directory/invalid-filesystem-chars-microsoft.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="directory_indexing",command = directory_indexing, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
           
-            b4_button = Button(F2, text ="joomscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
+                b4_button = Button(F2, text ="filenames_microsoft",command = filenames_microsoft, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="chars_microsoft",command = chars_microsoft,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+
+            b2_button = Button(F2, text ="disclosure-directory",command = disclosure_directory, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
+          
+
+#############################
+#############################
+
+            def disclosure_localpaths():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def httpd_log_locations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"/home/ibrahim/hackers/attack/disclosure-localpaths/common-unix-httpd-log-locations.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def filesystem_chars():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/disclosure-localpaths/invalid-filesystem-chars-osx.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="httpd_log_locations",command = httpd_log_locations, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="filesystem_chars",command = filesystem_chars, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b4_button = Button(F2, text ="disclosure-localpaths",command =disclosure_localpaths, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
+#############################
+#############################
+
+            def disclosure_source():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/disclosure-source/source-disc-cmd-exec-traversal.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/disclosure-source/source-disclosure-generic.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/disclosure-source/source-disclosure-microsoft.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="cmd-exec-traversal",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="disclosure-generic",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
             
-  
-            b6_button = Button(F2, text ="httpx", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="log4j-scan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
+
+                b5_button = Button(F2, text ="source-disclosure",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
             
-            b2_button = Button(F2, text ="magescan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b5_button = Button(F2, text ="disclosure-source", command =disclosure_source ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
+            
+  #############################
+#############################
+
+            def email():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/email/invalid-email-addresses.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/email/valid-email-addresses.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="email-addresses",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="email-addresses",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+          
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b6_button = Button(F2, text ="email", command =email, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
+
+#############################
+#############################
+
+            def format_strings():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/format-strings/format-strings.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/format-strings/file-ul-filter-bypass-commonly-writable-directories.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"/home/ibrahim/hackers/attack/format-strings/file-ul-filter-bypass-microsoft-asp.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="format-strings",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="writable-directories",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="bypass-microsoft",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b6_button = Button(F2, text ="format-strings",command = format_strings,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
+            
+#############################
+#############################
+
+            def html_js_fuzz():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/html_js_fuzz/HTML5sec_Injections.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/html_js_fuzz/html_attributes.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/html_js_fuzz/html_tags.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def javascript_events():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/html_js_fuzz/javascript_events.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def js_inject():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/html_js_fuzz/js_inject.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def quotationmarks():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/html_js_fuzz/quotationmarks.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="HTML5sec_Injections",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="html_attributes",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="html_tags",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+                b5_button = Button(F2, text ="javascript_events",command = javascript_events,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
+                b5_button = Button(F2, text ="js_inject",command = js_inject,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.49,anchor = NE)
+                b5_button = Button(F2, text ="quotationmarks",command = quotationmarks,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.58,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b2_button = Button(F2, text ="html_js_fuzz",command =html_js_fuzz, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -1360,18 +2292,592 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
 
-            b2_button = Button(F2, text ="conscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
+#############################
+#############################
+
+            def http_protocol():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/http-protocol/crlf-injection.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/http-protocol/hpp.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/http-protocol/http-header-cache-poison.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def protocol_methods():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/http-protocol/http-protocol-methods.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def header_field_names():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/http-protocol/http-request-header-field-names.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def header_field_names1():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/http-protocol/http-response-header-field-names.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def known_uri_types():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/http-protocol/known-uri-types.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def user_agents():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/http-protocol/user-agents.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="crlf-injection",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
           
-            b4_button = Button(F2, text ="crlf-injector", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
+                b4_button = Button(F2, text ="hpp",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
             
+
+                b5_button = Button(F2, text ="http-header-cache",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+                b5_button = Button(F2, text ="protocol_methods",command = protocol_methods,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
+                b5_button = Button(F2, text ="header_field_names",command = header_field_names,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.49,anchor = NE)
+                b5_button = Button(F2, text ="header_field_names1",command = header_field_names1,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.57,anchor = NE)
+                b5_button = Button(F2, text ="known_uri_types",command = known_uri_types,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.65,anchor = NE)
+                b5_button = Button(F2, text ="user_agents",command = user_agents,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.73,anchor = NE)
+
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b2_button = Button(F2, text ="http-protocol",command =http_protocol, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
+#############################
+#############################
+
+            def integer_overflow():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/integer-overflow/integer-overflows.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/integer-overflow/two-byte-chars.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/integer-overflow/upsidedown.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="integer-overflows",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="two-byte-chars",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="upsidedown",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+          
+            b4_button = Button(F2, text ="integer-overflow",command = integer_overflow, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
+            
+#############################
+#############################
+
+            def ip():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/ip/localhost.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/ip/rfi.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/ip/shell-expansion.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="localhost",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="rfi",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="shell-expansion",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
   
-            b5_button = Button(F2, text ="wfuzz", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
+            b5_button = Button(F2, text ="ip",command = ip, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
             
+#############################
+#############################
+
+            def json():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/json/html-event-attributes.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/json/JHADDIX_XSS_WITH_CONTEXT.doc.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/json/JSON_Fuzzing.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def xss_other():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/json/xss-other.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def XSSPolyglot():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/json/XSSPolyglot.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def xss_rsnake():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/json/xss-rsnake.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def xss_uri():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/json/xss-uri.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="html-event-attributes",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="JHADDIX_XSS",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="JSON_Fuzzing",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+                b5_button = Button(F2, text ="xss_other",command = xss_other,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
+                b5_button = Button(F2, text ="XSSPolyglot",command = XSSPolyglot,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.49,anchor = NE)
+                b5_button = Button(F2, text ="xss_rsnake",command = xss_rsnake,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.57,anchor = NE)
+                b5_button = Button(F2, text ="xss_uri",command = xss_uri,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.65,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
   
-            b6_button = Button(F2, text ="dirb", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="amass", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
+            b6_button = Button(F2, text ="xss-json",command =json, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
+#############################
+#############################
+
+            def ldap():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/ldap/ldap-injection.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/ldap/default-javascript-event-attributes.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/ldap/all-encodings-of-lt.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="ldap-injection",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="javascript-event",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
             
-            b2_button = Button(F2, text ="nikto", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
+
+                b5_button = Button(F2, text ="all-encodings-of-lt",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b6_button = Button(F2, text ="ldap",command =ldap, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
+            
+#############################
+#############################
+
+            def unicode1():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/unicode/corrupted.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/unicode/emoji.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/unicode/japanese-emoticon.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def naughty_unicode():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/unicode/naughty-unicode.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def regionalindicators():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/unicode/regionalindicators.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def right_to_left():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/unicode/right-to-left.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def specialchars():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/unicode/specialchars.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="corrupted",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="emoji",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="japanese-emoticon",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+                b5_button = Button(F2, text ="naughty_unicode",command = naughty_unicode,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
+                b5_button = Button(F2, text ="regionalindicators",command = regionalindicators,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.49,anchor = NE)
+                b5_button = Button(F2, text ="right_to_left",command = right_to_left,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.57,anchor = NE)
+                b5_button = Button(F2, text ="specialchars",command = specialchars,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.65,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b2_button = Button(F2, text ="unicode",command = unicode1, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -1380,18 +2886,510 @@ class home:
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
 
-            b2_button = Button(F2, text ="cewl", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
+#############################
+#############################
+
+            def mimetypes():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/mimetypes/xpath-injection.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/mimetypes/MimeTypes.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/mimetypes/JHADDIX_LFI.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def common_unix_httpd():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/mimetypes/common-unix-httpd-log-locations.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def httpd_log_locations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/mimetypes/common-ms-httpd-log-locations.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="xpath-injection",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
           
-            b4_button = Button(F2, text ="gooscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
+                b4_button = Button(F2, text ="MimeTypes",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="JHADDIX_LFI",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+                b5_button = Button(F2, text ="common_unix_httpd",command = common_unix_httpd,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
+                b5_button = Button(F2, text ="httpd_log_locations",command = httpd_log_locations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.49,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b2_button = Button(F2, text ="mimetypes",command =mimetypes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
+          
+#############################
+#############################
+
+            def no_sql_injection():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/no-sql-injection/mongodb.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/no-sql-injection/MySQL_MSSQL.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/no-sql-injection/oracle.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="mongodb",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="MySQL_MSSQL",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="oracle",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b4_button = Button(F2, text ="no-sql-injection",command =no_sql_injection, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
             
   
-            b5_button = Button(F2, text ="sn1per", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
+#############################
+#############################
+
+            def os_cmd_execution():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-cmd-execution/command-execution-unix.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-cmd-execution/command-injection-template.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-cmd-execution/Commands-Linux.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def xss_other():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-cmd-execution/OSCommandInject.Windows.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def XSSPolyglot():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-cmd-execution/shell-delimiters.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def xss_rsnake():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-cmd-execution/source-disc-cmd-exec-traversal.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def xss_uri():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-cmd-execution/useful-commands-unix.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def useful_commands():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-cmd-execution/useful-commands-windows.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="command-execution",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="command-injection",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="Commands-Linux",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+                b5_button = Button(F2, text ="OSCommandInject",command = xss_other,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.41,anchor = NE)
+                b5_button = Button(F2, text ="shell-delimiters",command = XSSPolyglot,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.49,anchor = NE)
+                b5_button = Button(F2, text ="source-disc-cmd",command = xss_rsnake,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.57,anchor = NE)
+                b5_button = Button(F2, text ="commands-unix",command = xss_uri,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.65,anchor = NE)
+                b5_button = Button(F2, text ="commands-windows",command = useful_commands,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.65,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b5_button = Button(F2, text ="os-cmd-execution",command =os_cmd_execution, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
             
   
-            b6_button = Button(F2, text ="backdoorppt", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="wsfuzzer", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
+#############################
+#############################
+
+            def os_dir_indexing():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-dir-indexing/Commands-OSX.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-dir-indexing/Commands-Windows.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/os-dir-indexing/directory-indexing.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="Commands-OSX",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="Commands-Windows",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
             
-            b2_button = Button(F2, text ="sublist3r", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
+
+                b5_button = Button(F2, text ="directory-indexing",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b6_button = Button(F2, text ="os-dir-indexing",command =os_dir_indexing , fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
+#############################
+#############################
+
+            def path_traversal():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/path-traversal/path-traversal-windows.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/path-traversal/traversals-8-deep-exotic-encoding.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/path-traversal/Commands-WindowsPowershell.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="path-traversal-windows",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="traversals-8-deep",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="WindowsPowershell",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+
+            b6_button = Button(F2, text ="path-traversal",command =path_traversal, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
+#############################
+#############################
+
+            def server_side_include():
+                F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black")
+                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+                Hacher_title = Label(F2, text="shaw all injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+                Hacher_tooles = LabelFrame(F2, text="All Payloads", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4")
+                Hacher_tooles.place(x=245, y=49, relwidth=0.75, relheight=0.92)
+                def HexValsAllBytes():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/server-side-include/server-side-includes-generic.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def imessage():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/server-side-include/xml-attacks.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+
+                def NullByteRepresentations():
+                    F3 = Frame(F2, bd=8, relief=GROOVE, bg="black")
+                    F3.place(x=252, y=71, relwidth=0.74, relheight=0.87)
+                    self.txtarea = open(r"attack/server-side-include/shell-operators.txt", "r") 
+                    data = self.txtarea.read()
+                    scroll_y = Scrollbar(F3, orient=VERTICAL)
+                    self.txtarea = Text(F3, yscrollcommand=scroll_y.set, font=("times new roman", 15, "bold"), fg="#ccc4c4", bg="#404040")
+                    scroll_y.pack(side=RIGHT, fill=Y)
+                    scroll_y.config(command=self.txtarea.yview)
+                    self.txtarea.insert(END, data)
+                    self.txtarea.pack(fill=BOTH,expand=1)
+                    self.txtarea.configure(state ='disabled')
+                def back():
+                    F3 = main()
+             
+                Hacher_s = LabelFrame(F2, text="prat injection", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="black", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+                p = Label(F2, text="Here are the full payloads.\nTo view payloads all you need to do is click on the payload button", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=72, relwidth=0.72, relheight=0.20)
+                p = Label(F2, text="Injection flaws occur when untrusted user data are sent to the web application \nas part of a command or query. The attacker’s hostile data can trick the \nweb application into executing unintended commands or accessing\n unauthorized data. Injection occurs when a hacker feeds malicious, \n input into the web application\n that is then acted on (processed) in an unsafe manner.\n This is one of the oldest attacks\n against web applications, but it’s still the king of the vulnerabilities\n because it is still widespread and very \ndamaging.Injection vulnerabilities can pop up in all \nsorts of places within the web application\n that allow the user to provide malicious input.\n Some of the most common injection attacks target\n the following functionality:", font=(
+            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+                p.place(x=260, y=190, relwidth=0.72, relheight=0.65)
+                b2_button = Button(F2, text ="includes-generic",command = HexValsAllBytes, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.15,anchor = NE)
+          
+                b4_button = Button(F2, text ="xml-attacks",command = imessage, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx =0.23, rely = 0.24,anchor = NE)
+            
+
+                b5_button = Button(F2, text ="shell-operators",command = NullByteRepresentations,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+                b5_button = Button(F2, text ="back",command = back,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="black").place(relx = 0.23, rely = 0.90,anchor = NE)
+###############################
+###############################
+            
+            b2_button = Button(F2, text ="server-side-include",command =server_side_include , fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 
@@ -1445,8 +3443,12 @@ class home:
         title = Label(self.root, text="Hackers A Tooles", font=("times new roman", 20, "bold"),
                       pady=2, bd=12, width=100, relief=GROOVE, bg="#404040", fg="#ccc4c4")
         title.place(relx = 0.5, rely = 0.1,anchor = 's')
+        title = Label(self.root, text="Hackers A Tooles", font=("times new roman", 12, "bold"),
+                      pady=2, bd=4, width=165, relief=GROOVE, bg="#404040", fg="#ccc4c4")
+        title.place(relx = 0.5, rely = 0.98,anchor = 's')
         self.root.resizable(True, True)
-    #create menu
+
+
 ###########################################################################################################
 
 ###########################################################################################################
@@ -1455,14 +3457,15 @@ class home:
         self.popup_menu = tkinter.Menu(self.root,
                                        tearoff = 0)
           
-        self.popup_menu.add_command(label = "say hi",
-                                    command = lambda:self.hey("hi"))
+        self.popup_menu.add_command(label = "Copy",
+                                    command = lambda:self.hey("Ctrl-C"))
           
-        self.popup_menu.add_command(label = "say hello",
-                                    command = lambda:self.hey("hello"))
+        self.popup_menu.add_command(label = "Paste",
+                                    command = lambda:self.hey("Paste"))
         self.popup_menu.add_separator()
-        self.popup_menu.add_command(label = "say bye",
-                                    command = lambda:self.hey("bye"))
+        self.popup_menu.add_command(label = "Select All",
+                                    command = lambda:self.hey("Select All"))
+
    
     #display menu on right click
     def do_popup(self,event):
