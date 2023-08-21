@@ -11,5 +11,5 @@ Text
 sd
 tkterminal
 Terminal
-tkinter
+
 
