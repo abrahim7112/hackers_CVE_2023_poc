@@ -6,7 +6,7 @@ This project is under development, please refer to this page to see the update
 
 Welcome to here are the new hacking tools, here in the sections there are new hacking tools all you have to do is choose the tool to test any website on the internet and get new vulnerabilities!!!!
 
-The largest hacking program with new tools <h6>CVE-2023-PoC</h6> for the year 2023 It contains all the attack and exploitation tools for testing websites, as well as a graphical interface to facilitate its use for beginners,
+The largest hacking program with new tools CVE-2023-PoCfor the year 2023 It contains all the attack and exploitation tools for testing websites, as well as a graphical interface to facilitate its use for beginners,
 use python
 
 Injection flaws occur when untrusted user data are sent to the web application as part of a command or query. The attacker’s hostile data can trick the web application into executing unintended commands or accessing unauthorized data. Injection occurs when a hacker feeds malicious, input into the web application that is then acted on (processed) in an unsafe manner. This is one of the oldest attacks against web applications, but it’s still the king of the vulnerabilities because it is still widespread and very damaging.
@@ -24,3 +24,19 @@ cd hackers
 pip install -r requirements
 python hackers.py
 ````
+# sql -injection
+![hackers](https://github.com/abrahim7112/hackers/blob/main/img/b.png)
+# xss -injection
+![hackers](https://github.com/abrahim7112/hackers/blob/main/img/c.png)
+# command -injection
+![hackers](https://github.com/abrahim7112/hackers/blob/main/img/d.png)
+# ssf -injection
+![hackers](https://github.com/abrahim7112/hackers/blob/main/img/e.png)
+# xml -injection
+![hackers](https://github.com/abrahim7112/hackers/blob/main/img/f.png)
+# dos-ddos -injection
+![hackers](https://github.com/abrahim7112/hackers/blob/main/img/g.png)
+# all -injection
+![hackers](https://github.com/abrahim7112/hackers/blob/main/img/h.png)
+# cve-2023-injection
+![hackers](https://github.com/abrahim7112/hackers/blob/main/img/i.png)
