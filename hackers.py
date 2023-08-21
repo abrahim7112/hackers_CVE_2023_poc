@@ -16,7 +16,7 @@ import webbrowser
 from tkinter import END, Text
 import tkinter.simpledialog as sd
 from tkterminal import Terminal
-
+from xss.CVE_2021_31761 import *
 
 class home: 
     def __init__(self):
@@ -92,12 +92,22 @@ class home:
             link2 = Label(F2, text="to visit the home page", fg="blue", cursor="hand2")
             link2.place(relx = 0.13, rely = 0.73,anchor = 's')
             link2.bind("<Button-1>", lambda e: callback("https://github.com/sqlmapproject/sqlmap/"))
-        tooles.add_command(label ='sqlmap', command = sqlmap)
-        tooles.add_command(label ='commix', command = None)
-        tooles.add_command(label ='nmap', command = None)
-        tooles.add_separator()
-        tooles.add_command(label ='amass', command = None)
-        tooles.add_command(label ='nikto', command = None)
+        tooles.add_command(label ='run sqlmap', command = sqlmap)
+        tooles.add_command(label ='run commix', command = None)
+        tooles.add_command(label ='run nmap', command = None)
+        tooles.add_command(label ='run amass', command = None)
+        tooles.add_command(label ='run nikto', command = None)
+######################################################################################################
+        terminal = Menu(menu, tearoff = 0)
+        def terminall():
+            F2 = Frame(self.root, bd=8, relief=GROOVE, bg="black"  )
+            F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
+            Hacher_title = Label(F2, text="work apron terminal", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="black", fg="white").pack(fill=X)
+            terminal = Terminal(pady=2, padx=2, relief=GROOVE, bg="black",fg = "white")
+            terminal.shell = True
+            terminal.place(x=324, y=138, relwidth=0.73, relheight=0.72)
+        menu.add_cascade(label ='terminal', menu = terminal)
+        terminal.add_command(label ='open terminal',command = terminall)
 #########################################################################################################
         # Adding Help Menu
         help_ = Menu(menu, tearoff = 0)
@@ -113,7 +123,7 @@ class home:
         help_.add_command(label ='Hackers Help', command = Help)
         help_.add_command(label ='Use Help', command = Use)
         help_.add_separator()
-        help_.add_command(label ='About hackersf    ', command = None)
+        help_.add_command(label ='About hackers', command = None)
         
         
 ###########################################################################################################
@@ -279,105 +289,51 @@ class home:
         def xss():
             F2 = Frame(self.root, bd=8, relief=GROOVE ,bg="#918713")
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-            Hacher_title = Label(F2, text="xss injection", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#918713", fg="white").pack(fill=X)
-            def Time_Based():
-                F2 = Frame(self.root, bd=8, relief=GROOVE)
-                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="sql injection", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="yellow", fg="black").pack(fill=X)
-                def get_quote():
-                    r = requests.get('https://hackerone.com/users/sign_in')
-                    data = r.text
-                    text_box.delete('1.0', END)
-                    text_box.insert(END, data)  
-                text_box = Text(F2, height=10, width=50)
-                get_button = Button(F2, text="Get Quote", command=get_quote)
-  
-                text_box.pack()
-                get_button.pack() 
-                 
-            Hacher_tooles = LabelFrame(F2, text="The Description", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
-            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="A Cross-Site Scripting (XSS) attack is characterized by an attacker's ability to inject to a web application,\n scripts of any kind, such as Flash, HTML, or JavaScript, \nthat are intended to run and render on the application serving the page. The web application unintentionally serves the\n script code which is executed by the browser and hence makes the user vulnerable to data theft and any privileges level\n which the script is allowed.The source of an XSS vulnerability lies in a web application that allows malicious\n code to be injected and evaluated as part of the web page being served to the user, and then the same malicious\n code is executed by the browser due to the web application inability to filter and sanitize the output.", font=(
-            "arial", 12, "bold"), bd=7, relief=GROOVE, bg="#b6ad48", fg="white")
-            Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
+            Hacher_title = Label(F2, text="xss injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="#918713", fg="white").pack(fill=X)
+
+            Hacher_tooles = LabelFrame(F2, text="The Description", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").place(x=240, y=49, relwidth=0.76, relheight=0.92)
+
+            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+
+            Hacher_title = Label(F2, text="A Cross-Site Scripting (XSS)\n attack is characterized by an attacker's ability\n to inject to a web application, scripts of any kind,\n such as Flash, HTML, or JavaScript, \nthat are intended to run and render on \nthe application serving the page. The web application unintentionally serves the\n script code which is executed by the browser and hence makes\n the user vulnerable to data theft and any privileges level\n which the script is allowed.The source of an \nXSS vulnerability lies in a web application that allows malicious\n code to be injected and evaluated as part of the web page\n being served to the user, and then the same malicious\n code is executed by the browser due to the web application\n inability to filter and sanitize the output.", font=("arial", 13, "bold"), bd=7, relief=GROOVE, bg="#b6ad48", fg="black").place(x=250, y=72, relwidth=0.74,relheight=0.88)
             
-            b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
+            def xssmap():
+                from xss import xssmap
+            b2_button = Button(F2, text ="xssmap",command = xssmap, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)
+            def CVE_2022_26809():
+                from xss import CVE_2022_26809
+            b4_button = Button(F2, text ="CVE_2022_26809",command =CVE_2022_26809, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.23,anchor = NE)
             
-  
-            b5_button = Button(F2, text ="wpscan",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
+            def CVE_2022_29455():
+                from xss import CVE_2022_29455
+            b5_button = Button(F2, text ="CVE_2022_29455",command =CVE_2022_29455,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+            def cve_2022_39197_poc():
+                from xss import cve_2022_39197_poc
+            b6_button = Button(F2, text ="cve_2022_39197_poc",command =cve_2022_39197_poc, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.41,anchor = NE)
+            
+            def CVE_2021_31762():
+                from xss import CVE_2021_31762
+            b2_button = Button(F2, text ="CVE_2021_31762",command =CVE_2021_31762, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.49,anchor = NE)
+
+            def CVE_2021_31761():
+                #from xss.CVE_2021_31761 import *
+                return CVE_2021_31761
+            b4_button = Button(F2, text ="CVE_2021_31761",command =CVE_2021_31761, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.57,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
+            def scancss():
+                from xss import scancss
+            b5_button = Button(F2, text ="xss_scancss",command =scancss,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.65,anchor = NE)
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
+            def xssearch():
+                from xss import xssearch
+            b6_button = Button(F2, text ="xssearch",command =xssearch, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.73,anchor = NE)
 
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles Scan", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
+            def main():
+                return xss()
             
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
-
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
-
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
+            b2_button = Button(F2, text ="back",command =main, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 
@@ -548,107 +504,53 @@ class home:
         def ssf():
             F2 = Frame(self.root, bd=8, relief=GROOVE, bg="#0c8c6d"  )
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-            Hacher_title = Label(F2, text="ssf injection", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#0c8c6d", fg="white").pack(fill=X)
-            def Time_Based():
-                F2 = Frame(self.root, bd=8, relief=GROOVE)
-                F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-                Hacher_title = Label(F2, text="sql injection", font=(
-                "arial", 20, "bold"), bd=7, relief=GROOVE, bg="yellow", fg="white").pack(fill=X)
-                def get_quote():
-                    r = requests.get('https://hackerone.com/users/sign_in')
-                    data = r.text
-                    #quote = data['content']
-                    text_box.delete('1.0', END)
-                    text_box.insert(END, data)  
-                text_box = Text(F2, height=10, width=50)
-                get_button = Button(F2, text="Get Quote", command=get_quote)
-  
-                text_box.pack()
-                get_button.pack() 
-                 
-            Hacher_tooles = LabelFrame(F2, text="The Description", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
-            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="SSIs are directives present on Web applications used to feed an HTML page with dynamic contents. \nThey are similar to CGIs, except that SSIs are used to execute some actions before the current page is\n loaded or while the page is being visualized. In order to do so, the web server analyzes SSI before supplying the\n page to the user. The Server-Side Includes attack allows the exploitation of a web application by injecting scripts in HTML \npages or executing arbitrary codes remotely. It can be exploited through manipulation of SSI \nin use in the application or force its use through user input fields. It is possible to check if the application is properly\n validating input fields data by inserting characters that are used in SSI directives, like:", font=(
-            "arial", 12, "bold"), bd=7, relief=GROOVE, bg="#7ea982", fg="#404040")#.pack(fill=X)
-            Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
+            Hacher_title = Label(F2, text="ssf injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="#0c8c6d", fg="white").pack(fill=X)
             
-            b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
+            Hacher_tooles = LabelFrame(F2, text="The Description", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").place(x=240, y=49, relwidth=0.76, relheight=0.92)
+
+            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+
+            Hacher_title = Label(F2, text="SSIs are directives present on Web applications \nused to feed an HTML page with dynamic contents. \nThey are similar to CGIs, except that SSIs are used to\n execute some actions before the current page is\n loaded or while the page is being visualized.\n In order to do so, the web server analyzes SSI before supplying the\n page to the user. The Server-Side Includes attack \nallows the exploitation of a web application by injecting scripts in HTML \npages or executing arbitrary codes remotely.\n It can be exploited through manipulation of SSI \nin use in the application or force its use through \nuser input fields. It is possible to check if the application is properly\n validating input fields data by inserting characters \nthat are used in SSI directives, like:", font=("arial", 13, "bold"), bd=7, relief=GROOVE, bg="#7ea982", fg="black").place(x=250, y=72, relwidth=0.74,relheight=0.88)
+            
+            def ssrf():
+                from ssf import ssrf
+            b2_button = Button(F2, text ="scan_ssrf",command = ssrf, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)
+
+            def CVE_2022_3590():
+                from ssf import CVE_2022_3590
+            b4_button = Button(F2, text ="CVE_2022_3590",command =CVE_2022_3590, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.23,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
+            def CVE_2023_27163():
+                from ssf import CVE_2023_27163
+            b5_button = Button(F2, text ="CVE_2023_27163",command =CVE_2023_27163,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.33,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
+            def CVE_2022_41082():
+                from ssf import CVE_2022_41082
+            b6_button = Button(F2, text ="CVE_2022_41082",command =CVE_2022_41082, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.41,anchor = NE)
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
+            def CVE_2022_36663():
+                from ssf import CVE_2022_36663
+            b2_button = Button(F2, text ="CVE_2022_36663",command =CVE_2022_36663, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.49,anchor = NE)
 
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles Scan", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
+            def CVE_2022_26135():
+                from ssf import CVE_2022_26135
+            b4_button = Button(F2, text ="CVE_2022_26135",command =CVE_2022_26135, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.57,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
+            def CVE_2022_28117():
+                from ssf import CVE_2022_28117
+            b5_button = Button(F2, text ="CVE_2022_28117",command =CVE_2022_28117,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.65,anchor = NE)
             
   
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
+            def CVE_2022_25260():
+                from ssf import CVE_2022_25260
+            b6_button = Button(F2, text ="CVE_2022_25260",command =CVE_2022_25260, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.73,anchor = NE)
 
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
-
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
-
+            def main():
+                return ssf()
+            b2_button = Button(F2, text ="back",command =main, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 ###########################################################################################################
 
 ###########################################################################################################
@@ -679,93 +581,47 @@ class home:
         def xml():
             F2 = Frame(self.root, bd=8, relief=GROOVE, bg="#8322a4")
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-            Hacher_title = Label(F2, text="xml injection", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#8322a4", fg="white").pack(fill=X)
-            def Time_Based():
-                from xmlin import cope
-                F2 = cope() 
-                 
-            Hacher_tooles = LabelFrame(F2, text="The Description", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
-            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="In this section, we'll explain what XML external entity injection is, describe some common examples, explain how to find and \nexploit various kinds of XXE injection, and summarize how to prevent XXE injection attacks.\nWhat is XML external entity injection?\nXML external entity injection (also known as XXE) is a web security vulnerability\n that allows an attacker to interfere with an application's processing of XML data. It often allows an attacker to view files on\n the application server filesystem, and to interact with any backend or external systems that the application \nitself can access.In some situations, an attacker can escalate an XXE attack to compromise the underlying server or other\n backend infrastructure, by leveraging the XXE vulnerability to perform server-side request forgery (SSRF) attacks.", font=(
-            "arial", 12, "bold"), bd=7, relief=GROOVE, bg="#9a65ac", fg="white")
-            Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
+            Hacher_title = Label(F2, text="xml injection", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="#8322a4", fg="white").pack(fill=X)
             
-            b2_button = Button(F2, text ="sqlmap",command = Time_Based, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
+            Hacher_tooles = LabelFrame(F2, text="The Description", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").place(x=240, y=49, relwidth=0.76, relheight=0.92)
+
+            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+
+            Hacher_title = Label(F2, text="In this section, we'll explain what XML external \n entity injection is, describe some common examples, \n explain how to find and \nexploit various kinds of XXE injection,\n and summarize how to prevent XXE injection attacks.\nWhat is XML external entity injection?\nXML external entity injection (also known as XXE)\n is a web security vulnerability\n that allows an attacker to interfere with an application's \nprocessing of XML data. It often allows an attacker to view files on\n the application server filesystem, and to interact \nwith any backend or external systems that the application \nitself can access.In some situations,\n an attacker can escalate an XXE attack to compromise\n the underlying server or other\n backend infrastructure, by leveraging the XXE vulnerability to\n perform server-side request forgery (SSRF) attacks.", font=("arial", 13, "bold"), bd=7, relief=GROOVE, bg="#8322a4", fg="white").place(x=250, y=72, relwidth=0.74,relheight=0.88)
+            
+            def CVE_2022_40684():
+                from xmlin import CVE_2022_40684
+            b2_button = Button(F2, text ="CVE_2022_40684",command = CVE_2022_40684, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)
+
+            def CVE_2022_41040():
+                from xmlin import CVE_2022_41040
+            b4_button = Button(F2, text ="CVE_2022_41040",command = CVE_2022_41040, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.23,anchor = NE)
+            
+            def CVE_2022_41049_POC():
+                from xmlin import CVE_2022_41049_POC
+            b5_button = Button(F2, text ="CVE_2022_41049",command= CVE_2022_41049_POC,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+            def cve_2022_41876():
+                from xmlin import cve_2022_41876
+            b6_button = Button(F2, text ="cve_2022_41876",command = cve_2022_41876, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.41,anchor = NE)
+            
+            def CVE_2022_31854():
+                from xmlin import CVE_2022_31854
+            b2_button = Button(F2, text ="CVE_2022_31854",command = CVE_2022_31854, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.49,anchor = NE)
+
+            def cve_2022_2414_poc():
+                from xmlin import cve_2022_2414_poc
+            b4_button = Button(F2, text ="cve_2022_2414",command = cve_2022_2414_poc, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.57,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
+            def ScanAndroidXml():
+                from xmlin import ScanAndroidXml
+            b5_button = Button(F2, text ="ScanAndroidXml",command = ScanAndroidXml,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.65,anchor = NE)
             
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles Scan", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
-
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
-
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE)
+            def main():
+                return xml()         
+            b2_button = Button(F2, text ="back",command = main, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 
@@ -783,92 +639,55 @@ class home:
         def service():
             F2 = Frame(self.root, bd=8, relief=GROOVE , bg="#92147b" )
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
-            Hacher_title = Label(F2, text="denial of service", font=(
-            "arial", 20, "bold"), bd=7, relief=GROOVE, bg="#92147b", fg="white").pack(fill=X)
+            Hacher_title = Label(F2, text="denial of service", font=("arial", 20, "bold"), bd=7, relief=GROOVE, bg="#92147b", fg="white").pack(fill=X)
+                 
+            Hacher_tooles = LabelFrame(F2, text="The Description", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").place(x=240, y=49, relwidth=0.76, relheight=0.92)
+
+            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=("times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4").place(x=2, y=49, relwidth=0.24, relheight=0.92)
+
+            Hacher_title = Label(F2, text="In computing, a denial-of-service attack \n(DoS attack) is a cyber-attack in which \nthe perpetrator seeks to make a machine or network\n resource unavailable to its intended users by\n temporarily or indefinitely disrupting services of a host \nconnected to a network. Denial of service is typically \naccomplished by flooding the targeted machine or\n resource with superfluous requests in an attempt to\n overload systems and prevent some or \nall legitimate requests from being fulfilled. ", font=("arial", 13, "bold"), bd=7, relief=GROOVE, bg="#af559f", fg="black").place(x=250, y=72, relwidth=0.74,relheight=0.88)
+            
             def Overload_DoS():
                 from service import Overload_DoS
-                 
-            Hacher_tooles = LabelFrame(F2, text="The Description", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
-            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
-            Hacher_title = Label(F2, text="In computing, a denial-of-service attack (DoS attack) is a cyber-attack in which \nthe perpetrator seeks to make a machine or network resource unavailable to its intended users by\n temporarily or indefinitely disrupting services of a host connected to a network. Denial of service is typically \naccomplished by flooding the targeted machine or resource with superfluous requests in an attempt to\n overload systems and prevent some or all legitimate requests from being fulfilled. ", font=(
-            "arial", 13, "bold"), bd=7, relief=GROOVE, bg="#af559f", fg="white")
-            Hacher_title.place(x=15, y=72, relwidth=0.97,relheight=0.30)
+            b2_button = Button(F2, text ="Overload_DoS",command = Overload_DoS, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)
+
+            def CVE_2020_11579():
+                from service import CVE_2020_11579
+            b4_button = Button(F2, text ="CVE_2020_11579",command = CVE_2020_11579, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.23,anchor = NE)
             
-            b2_button = Button(F2, text ="Overload_DoS",command = Overload_DoS, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
+            def ddos():
+                from service import ddos
+            b5_button = Button(F2, text ="attack_ddos",command = ddos,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.33,anchor = NE)
+            
+            def doss():
+                from service import doss
+            b6_button = Button(F2, text ="attack_dos",command = doss, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.41,anchor = NE)
+            
+            def exploit():
+                from service import exploit
+            b2_button = Button(F2, text ="exploit_dos",command = exploit, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.49,anchor = NE)
+
+            def posddos():
+                from service import posddos
+            b4_button = Button(F2, text ="pos_ddos",command = posddos, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.57,anchor = NE)
             
   
-            b5_button = Button(F2, text ="wpscan",fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
+            def apache_range_dos():
+                from service import apache_range_dos
+            b5_button = Button(F2, text ="apache_range_dos",command = apache_range_dos,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.65,anchor = NE)
             
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
+            def attack():
+                from service import dos
+            b6_button = Button(F2, text ="attack",command = attack, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.73,anchor = NE)
+
             
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
+            def main():
+                return service()
+            b2_button = Button(F2, text ="back",command = main, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 
 ####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles Scan", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.48, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.90,anchor = NE)
-
 ###########################################################################################################
 ####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
-
-###########################################################################################################
-####################################################################################
-
-            Hacher_s = LabelFrame(F2, text="Tooles ", font=(
-            "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
-            Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
-
-            b2_button = Button(F2, text ="sqlmap", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
-          
-            b4_button = Button(F2, text ="commix", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
-            
-  
-            b5_button = Button(F2, text ="wpscan", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.66,anchor = NE)
-            
-  
-            b6_button = Button(F2, text ="Oracle", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.74,anchor = NE)
-            b6_button = Button(F2, text ="Cubrid", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.82,anchor = NE)
-            
-            b2_button = Button(F2, text ="EnterpriseDB", fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.90,anchor = NE) 
 
 ###########################################################################################################
 
@@ -1269,7 +1088,7 @@ class home:
             Hacher_tooles = LabelFrame(F2, text="The Description", font=(
                 "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_tooles.place(x=2, y=49, relwidth=0.99, relheight=0.36)
-            Hacher_s = LabelFrame(F2, text="Tooles Exploits", font=(
+            Hacher_s = LabelFrame(F2, text="show Payloads", font=(
                 "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=2, y=248, relwidth=0.24, relheight=0.56)
             Hacher_title = Label(F2, text="Welcome to the new hacking tools \n,There are new hacking tools here in the following sections.\n Choose the tool to test any website on the Internet \n and get new security vulnerabilities!!!! ", font=(
@@ -1853,7 +1672,7 @@ class home:
 
 ####################################################################################
 
-            Hacher_s = LabelFrame(F2, text="Tooles Scan", font=(
+            Hacher_s = LabelFrame(F2, text="show Payloads", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=252, y=248, relwidth=0.24, relheight=0.56)
 
@@ -2288,7 +2107,7 @@ class home:
 ###########################################################################################################
 ####################################################################################
 
-            Hacher_s = LabelFrame(F2, text="Tooles Fuzzer", font=(
+            Hacher_s = LabelFrame(F2, text="show Payloads", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=501, y=248, relwidth=0.24, relheight=0.56)
 
@@ -2882,7 +2701,7 @@ class home:
 ###########################################################################################################
 ####################################################################################
 
-            Hacher_s = LabelFrame(F2, text="Tooles get", font=(
+            Hacher_s = LabelFrame(F2, text="show Payloads", font=(
             "times new roman", 15, "bold"), bd=7, relief=GROOVE, bg="#404040", fg="#ccc4c4")
             Hacher_s.place(x=751, y=248, relwidth=0.24, relheight=0.56)
 
@@ -3434,7 +3253,7 @@ class home:
         self.btn1 = Button(self.root, text = 'CVE-2023-PoC',command = CVEPoC, width=20, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040", fg="#ccc4c4")
 
         self.btn1.place(relx = 0.21, rely = 0.70,anchor = NE)
-        self.btn1 = Button(self.root, text = 'Back to the tools',command = main, width=20, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040", fg="#ccc4c4")
+        self.btn1 = Button(self.root, text = 'Back to Payloads',command = main, width=20, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040", fg="#ccc4c4")
         self.btn1.place(relx = 0.21, rely = 0.78,anchor = NE)
         self.btn1 = Button(self.root, text = 'Quit !',command = self.root.destroy, width=20, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040", fg="red")
         self.btn1.place(relx = 0.21, rely = 0.85,anchor = NE)
