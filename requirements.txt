@@ -1,3 +1,4 @@
+python-aalib
 tk
 time
 strftime
