@@ -16,7 +16,6 @@ import webbrowser
 from tkinter import END, Text
 import tkinter.simpledialog as sd
 from tkterminal import Terminal
-from xss.CVE_2021_31761 import *
 
 class home: 
     def __init__(self):
@@ -317,7 +316,7 @@ class home:
             b2_button = Button(F2, text ="CVE_2021_31762",command =CVE_2021_31762, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.49,anchor = NE)
 
             def CVE_2021_31761():
-                #from xss.CVE_2021_31761 import *
+                from xss import CVE_2021_31761
                 return CVE_2021_31761
             b4_button = Button(F2, text ="CVE_2021_31761",command =CVE_2021_31761, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.57,anchor = NE)
             
