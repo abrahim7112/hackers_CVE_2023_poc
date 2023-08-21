@@ -25,10 +25,10 @@ jobs:
         python-version: "3.10"
     - name: Install dependencies
       run: |
-        python -m pip3 install --upgrade pip
-        pip3 install flake8 pytest
-        sudo apt-get install python-tk
-        sudo pip3 install -r requirements.txt
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        sudo apt-get install python-tk python-pip
+        sudo pip install -r requirements.txt
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
