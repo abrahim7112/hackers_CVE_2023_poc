@@ -15,7 +15,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: Linux
+    runs-on: GNU/Linux
 
     steps:
     - uses: actions/checkout@v3
