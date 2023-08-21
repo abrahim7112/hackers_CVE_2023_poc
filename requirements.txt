@@ -1,5 +1,4 @@
-tk-tools==0.1.0
-tk
+python-tk
 time
 strftime
 messagebox
