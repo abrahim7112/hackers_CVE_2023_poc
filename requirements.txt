@@ -1,5 +1,3 @@
-python-aalib
-python3-tk
 time
 strftime
 messagebox
