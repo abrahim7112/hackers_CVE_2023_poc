@@ -23,20 +23,35 @@ git clone https://github.com/abrahim7112/hackers.git
 cd hackers
 pip install -r requirements
 python hackers.py
-````
+```
 # sql -injection
+
 ![hackers](https://github.com/abrahim7112/hackers/blob/main/img/b.png)
+
 # xss -injection
+
 ![hackers](https://github.com/abrahim7112/hackers/blob/main/img/c.png)
+
 # command -injection
+
 ![hackers](https://github.com/abrahim7112/hackers/blob/main/img/d.png)
+
 # ssf -injection
+
 ![hackers](https://github.com/abrahim7112/hackers/blob/main/img/e.png)
+
 # xml -injection
+
 ![hackers](https://github.com/abrahim7112/hackers/blob/main/img/f.png)
+
 # dos-ddos -injection
+
 ![hackers](https://github.com/abrahim7112/hackers/blob/main/img/g.png)
+
 # all -injection
+
 ![hackers](https://github.com/abrahim7112/hackers/blob/main/img/h.png)
+
 # cve-2023-injection
+
 ![hackers](https://github.com/abrahim7112/hackers/blob/main/img/i.png)
