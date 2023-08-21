@@ -1,4 +1,4 @@
-python-tk
+tk
 time
 strftime
 messagebox
