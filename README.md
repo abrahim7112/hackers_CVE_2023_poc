@@ -21,8 +21,14 @@ https://github.com/abrahim7112/hackers/wiki
 ```
 git clone https://github.com/abrahim7112/hackers_CVE_2023_poc.git
 cd hackers_CVE_2023_poc
-pip install -r requirements
+pip install -r requirements.txt
 python hackers.py
+```
+## install archlinux 
+```
+sudo pacman -S python-tk
+or
+sudo pacman -S tk
 ```
 # sql -injection
 
