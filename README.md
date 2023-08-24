@@ -20,7 +20,7 @@ https://github.com/abrahim7112/hackers/wiki
 
 ```
 git clone https://github.com/abrahim7112/hackers_CVE_2023_poc.git
-cd hackers
+cd hackers_CVE_2023_poc
 pip install -r requirements
 python hackers.py
 ```
