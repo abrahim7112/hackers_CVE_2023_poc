@@ -17,6 +17,7 @@ from tkinter import END, Text
 import tkinter.simpledialog as sd
 from tkterminal import Terminal
 
+
 class home: 
     def __init__(self):
         self.root = tkinter.Tk()
@@ -54,7 +55,7 @@ class home:
             firefox = webbrowser.Mozilla("firefox")
             firefox.open(link)
         tooles.add_command(label ='open firefox', command = firefox)
-
+        '''
         def sqlmap():
             F2 = Frame(self.root, bd=8, relief=GROOVE, bg="#d89239"  )
             F2.place(x=310, y=80, relwidth=0.75, relheight=0.82)
@@ -68,21 +69,19 @@ class home:
             terminal.shell = True
             terminal.place(x=580, y=256, relwidth=0.54, relheight=0.55)
             p = Label(F2, text="Download sqlmap by clicking", font=("arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.20, rely = 0.27,anchor = NE)
-            b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'pip install sqlmap ', 'y')).place(relx = 0.23, rely = 0.32,anchor = 's')
+            b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",command=lambda: terminal.run_command(f'sqlmap -hh', 'y')).place(relx = 0.23, rely = 0.32,anchor = 's')
 
             p = Label(F2, text="To get a list of all options and\nswitches clicking:", font=("arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.20, rely = 0.31,anchor = NE)
 
-            b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'sqlmap -hh', 'y')).place(relx = 0.23, rely = 0.38,anchor = 's')
+            b1 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",command=lambda: terminal.run_command(f'sqlmap -hh', 'y')).place(relx = 0.23, rely = 0.38,anchor = 's')
 
             pat = Label(F2, text="Target URL. Option: -u or --url\nRun sqlmap against a single target URL.\n This option requires a target\nURL in following form:\nhttp(s)://targeturl[:port]/[...]\nFor example:", font=( "arial", 9, "bold"), fg="white", bg="#404040").place(relx = 0.13, rely = 0.54,anchor = 's')
 
             pat1 = Label(F2, text="$sqlmap -u 'http://www.target.com/vuln.php?id=1'", font=("arial", 7, "bold"), fg="white", bg="#404040").place(relx = 0.13, rely = 0.56,anchor = 's')
 
             p2 = Label(F2, text="to run simple sqlmap", font=( "arial", 10, "bold"), fg="white", bg="#404040").place(relx = 0.16, rely = 0.59,anchor = NE)
-            p3 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",
-                    command=lambda: terminal.run_command(f'sqlmap --wizard', 'y')).place(relx = 0.23, rely = 0.63,anchor = 's')
+            p3 = Button(F2, text="here", fg ="#ccc4c4",relief=GROOVE, bg="#404040",command=lambda: terminal.run_command(f'sqlmap --wizard', 'y')).place(relx = 0.23, rely = 0.63,anchor = 's')
+
             def callback(url):
                 webbrowser.open_new(url)
             link1 = Label(F2, text="for further use.", fg="blue", cursor="hand2")
@@ -91,7 +90,9 @@ class home:
             link2 = Label(F2, text="to visit the home page", fg="blue", cursor="hand2")
             link2.place(relx = 0.13, rely = 0.73,anchor = 's')
             link2.bind("<Button-1>", lambda e: callback("https://github.com/sqlmapproject/sqlmap/"))
-        tooles.add_command(label ='run sqlmap', command = sqlmap)
+
+        '''
+        tooles.add_command(label ='run sqlmap', command = None)
         tooles.add_command(label ='run commix', command = None)
         tooles.add_command(label ='run nmap', command = None)
         tooles.add_command(label ='run amass', command = None)
@@ -155,13 +156,14 @@ class home:
             b2_button = Button(F2, text ="BlindSQL1",command = BlindSQL1, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.50,anchor = NE)
           
             def p():
-                from sql import Remotephp1
-                r = Remotephp1
+                from sql.Remotephp1 import jeyiuwai
+                return jeyiuwai()
             b4_button = Button(F2, text ="CVE-2023-0669",command = p, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.58,anchor = NE)
             
   
             def CVE_2022_31101sql():
-                from sql import CVE_2022_31101sql
+                from sql.CVE_2022_31101sql import CVE_2022_31101
+                return CVE_2022_31101()
             b5_button = Button(F2, text ="CVE-2022-31101sql",command = CVE_2022_31101sql,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.66,anchor = NE)
             
   
@@ -174,8 +176,9 @@ class home:
             b6_button = Button(F2, text ="CVE_2012_5967",command =CVE_2012_5967 , fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.82,anchor = NE)
 
             def CVE_2016_2386SQL():
-                from sql import CVE_2016_2386SQL
-            b2_button = Button(F2, text ="CVE_2016_2386SQL",command = CVE_2016_2386SQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
+                from sql.CVE_2016_2386SQL import APISIX
+                return APISIX()
+            b2_button = Button(F2, text ="CVE-2022-24112",command = CVE_2016_2386SQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.90,anchor = NE)
 
 ####################################################################################
 
@@ -194,11 +197,12 @@ class home:
   
             def first_available_hash():
                 from sql import first_available_hash
-            b5_button = Button(F2, text ="first_available_hash",command = first_available_hash, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
+            b5_button = Button(F2, text ="first_available",command = first_available_hash, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.66,anchor = NE)
             
   
             def loginaspSQL():
-                from sql import loginaspSQL
+                from sql.loginaspSQL import login_asp
+                return login_asp()
             b6_button = Button(F2, text ="loginaspSQL",command = loginaspSQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold",relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.74,anchor = NE)
 
             def MicrosoftSQLServer():
@@ -231,7 +235,7 @@ class home:
   
             def SQL1InjectionRemote():
                 from sql import SQL1InjectionRemote
-            b6_button = Button(F2, text ="SQL1InjectionRemote", command =SQL1InjectionRemote ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
+            b6_button = Button(F2, text ="1InjectionRemote", command =SQL1InjectionRemote ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.74,anchor = NE)
 
             def wordpressx_sql():
                 from sql import wordpressx_sql
@@ -239,7 +243,7 @@ class home:
             
             def Webspell_wCMS_Clanscript():
                 from sql import Webspell_wCMS_Clanscript
-            b2_button = Button(F2, text ="Webspell_wCMS_Clanscript",command = Webspell_wCMS_Clanscript, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
+            b2_button = Button(F2, text ="Webspell_wCMS",command = Webspell_wCMS_Clanscript, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.90,anchor = NE)
 
 ###########################################################################################################
 ####################################################################################
@@ -250,11 +254,12 @@ class home:
 
             def UnauthenticatedSQL():
                 from sql import UnauthenticatedSQL
-            b2_button = Button(F2, text ="UnauthenticatedSQL",command = UnauthenticatedSQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
+            b2_button = Button(F2, text ="Unauthenticated",command = UnauthenticatedSQL, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.50,anchor = NE)
           
             def Symantec_Web_Gateway():
-                from sql import Symantec_Web_Gateway
-            b4_button = Button(F2, text ="Symantec_Web_Gateway",command = Symantec_Web_Gateway, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
+                from sql.Symantec_Web_Gateway import Gateway
+                return Gateway()
+            b4_button = Button(F2, text ="Web_Gateway",command = Symantec_Web_Gateway, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.58,anchor = NE)
             
   
             def SQLSA_CORE_2014():
@@ -299,25 +304,30 @@ class home:
             def xssmap():
                 from xss import xssmap
             b2_button = Button(F2, text ="xssmap",command = xssmap, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)
+
             def CVE_2022_26809():
-                from xss import CVE_2022_26809
+                from xss.CVE_2022_26809 import Remote
+                return Remote()
             b4_button = Button(F2, text ="CVE_2022_26809",command =CVE_2022_26809, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.23,anchor = NE)
             
             def CVE_2022_29455():
-                from xss import CVE_2022_29455
+                from xss.CVE_2022_29455 import Cross_Site
+                return Cross_Site()
             b5_button = Button(F2, text ="CVE_2022_29455",command =CVE_2022_29455,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.33,anchor = NE)
             
             def cve_2022_39197_poc():
-                from xss import cve_2022_39197_poc
+                from xss.cve_2022_39197_poc import  Beichendream
+                return Beichendream()
             b6_button = Button(F2, text ="cve_2022_39197_poc",command =cve_2022_39197_poc, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.41,anchor = NE)
             
             def CVE_2021_31762():
-                from xss import CVE_2021_31762
+                from xss.CVE_2021_31762 import Webmin
+                return Webmin()
             b2_button = Button(F2, text ="CVE_2021_31762",command =CVE_2021_31762, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.49,anchor = NE)
 
             def CVE_2021_31761():
-                from xss import CVE_2021_31761
-                return CVE_2021_31761
+                from xss.CVE_2021_31761 import  Apachemain
+                return Apachemain()
             b4_button = Button(F2, text ="CVE_2021_31761",command =CVE_2021_31761, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.57,anchor = NE)
             
   
@@ -326,7 +336,8 @@ class home:
             b5_button = Button(F2, text ="xss_scancss",command =scancss,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.65,anchor = NE)
             
             def xssearch():
-                from xss import xssearch
+                from xss.xssearch import all_required
+                return all_required()
             b6_button = Button(F2, text ="xssearch",command =xssearch, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.73,anchor = NE)
 
             def main():
@@ -589,7 +600,8 @@ class home:
             Hacher_title = Label(F2, text="In this section, we'll explain what XML external \n entity injection is, describe some common examples, \n explain how to find and \nexploit various kinds of XXE injection,\n and summarize how to prevent XXE injection attacks.\nWhat is XML external entity injection?\nXML external entity injection (also known as XXE)\n is a web security vulnerability\n that allows an attacker to interfere with an application's \nprocessing of XML data. It often allows an attacker to view files on\n the application server filesystem, and to interact \nwith any backend or external systems that the application \nitself can access.In some situations,\n an attacker can escalate an XXE attack to compromise\n the underlying server or other\n backend infrastructure, by leveraging the XXE vulnerability to\n perform server-side request forgery (SSRF) attacks.", font=("arial", 13, "bold"), bd=7, relief=GROOVE, bg="#8322a4", fg="white").place(x=250, y=72, relwidth=0.74,relheight=0.88)
             
             def CVE_2022_40684():
-                from xmlin import CVE_2022_40684
+                from xmlin.CVE_2022_40684 import  unauthenticated
+                return unauthenticated()
             b2_button = Button(F2, text ="CVE_2022_40684",command = CVE_2022_40684, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)
 
             def CVE_2022_41040():
@@ -605,11 +617,13 @@ class home:
             b6_button = Button(F2, text ="cve_2022_41876",command = cve_2022_41876, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.41,anchor = NE)
             
             def CVE_2022_31854():
-                from xmlin import CVE_2022_31854
+                from xmlin.CVE_2022_31854 import  phpIPAM
+                return phpIPAM()
             b2_button = Button(F2, text ="CVE_2022_31854",command = CVE_2022_31854, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.49,anchor = NE)
 
             def cve_2022_2414_poc():
-                from xmlin import cve_2022_2414_poc
+                from xmlin.cve_2022_2414_poc import cve_2022_2414_poc
+                return cve_2022_2414_poc()
             b4_button = Button(F2, text ="cve_2022_2414",command = cve_2022_2414_poc, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.23, rely = 0.57,anchor = NE)
             
   
@@ -672,7 +686,9 @@ class home:
             
   
             def apache_range_dos():
-                from service import apache_range_dos
+                from service.apache_range_dos import Apache
+                return Apache()
+                    
             b5_button = Button(F2, text ="apache_range_dos",command = apache_range_dos,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.65,anchor = NE)
             
             def attack():
@@ -862,24 +878,28 @@ class home:
             Hacher_s.place(x=2, y=45, relwidth=0.24, relheight=0.92)
 
             def CVE_2023_0861():
-                from CVE_2023_poc import CVE_2023_0861
+                from CVE_2023_poc.CVE_2023_0861 import Apache
+                return Apache()
             b2_button = Button(F2, text ="CVE-2023-0861",command = CVE_2023_0861,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.15,anchor = NE)  
           
             def CVE_2023_1671():
-                from CVE_2023_poc import CVE_2023_1671
+                from CVE_2023_poc.CVE_2023_1671 import Main
+                return Main()
             b5_button = Button(F2, text ="CVE-2023-1671",command = CVE_2023_1671,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.23,anchor = NE)
             
   
             def CVE_2023_1671_POC():
                 from CVE_2023_poc import CVE_2023_1671_POC
-            b6_button = Button(F2, text ="CVE-2023-1671",command =  CVE_2023_1671_POC,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.31,anchor = NE)
+            b6_button = Button(F2, text ="CVE-2023-1671poc",command =  CVE_2023_1671_POC,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.31,anchor = NE)
 
             def CVE_2023_2825_POC():
-                from CVE_2023_poc import CVE_2023_2825_POC
-            b6_button = Button(F2, text ="CVE-2023-2825",command = CVE_2023_2825_POC, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.39,anchor = NE)
+                from CVE_2023_poc.CVE_2023_2825_POC import GitLab
+                return GitLab()
+            b6_button = Button(F2, text ="CVE_2023_2825_POC",command = CVE_2023_2825_POC, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.39,anchor = NE)
             
             def CVE_2023_2825():
-                from CVE_2023_poc import CVE_2023_2825
+                from CVE_2023_poc.CVE_2023_2825 import GitLab1 
+                return GitLab1()
             b2_button = Button(F2, text ="CVE-2023-2825",command = CVE_2023_2825, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.47,anchor = NE)
           
             def CVE_2023_2868():
@@ -888,11 +908,13 @@ class home:
             
   
             def CVE_2023_2877():
-                from CVE_2023_poc import CVE_2023_2877
+                from CVE_2023_poc.CVE_2023_2877 import  Subscriber
+                return Subscriber()
             b5_button = Button(F2, text ="CVE-2023-2877",command =CVE_2023_2877 ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.63,anchor = NE)
             
             def CVE_2023_2982():
-                from CVE_2023_poc import CVE_2023_2982
+                from CVE_2023_poc.CVE_2023_2982 import Apachey
+                return Apachey()
             b6_button = Button(F2, text ="CVE-2023-2982",command = CVE_2023_2982, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.71,anchor = NE)
 
             def CVE_2023_2986():
@@ -900,7 +922,8 @@ class home:
             b6_button = Button(F2, text ="CVE-2023-2986",command = CVE_2023_2986, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.79,anchor = NE)
             
             def CVE_2023_3460():
-                from CVE_2023_poc import CVE_2023_3460
+                from CVE_2023_poc.CVE_2023_3460 import  Unauthorized
+                return Unauthorized()
             b2_button = Button(F2, text ="CVE-2023-3460",command = CVE_2023_3460, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.23, rely = 0.87,anchor = NE)
 
 ####################################################################################
@@ -918,15 +941,19 @@ class home:
             b5_button = Button(F2, text ="cve-2023-10608",command =CVE_2023_10608 ,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.23,anchor = NE)
             
             def CVE_2023_20110():
-                from CVE_2023_poc import CVE_2023_20110
+                from CVE_2023_poc.CVE_2023_20110 import SQL_Injection
+                SQL_Injection()
+                
             b6_button = Button(F2, text ="CVE-2023-20110",command = CVE_2023_20110, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.31,anchor = NE)
 
             def CVE_2023_20887():
-                from CVE_2023_poc import CVE_2023_20887
+                from CVE_2023_poc.CVE_2023_20887 import Networks
+                return Networks()
             b6_button = Button(F2, text ="CVE-2023-20887", command = CVE_2023_20887,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.39,anchor = NE)
             
             def CVE_2023_21554():
-                from CVE_2023_poc import CVE_2023_21554
+                from CVE_2023_poc.CVE_2023_21554 import ip_address
+                return ip_address()
             b2_button = Button(F2, text ="CVE-2023-21554",command = CVE_2023_21554, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.47,anchor = NE)
           
             def CVE_2023_21707():
@@ -944,7 +971,8 @@ class home:
             b6_button = Button(F2, text ="CVE-2023-21716",command = CVE_2023_21716, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.71,anchor = NE)
 
             def CVE_2023_21837():
-                from CVE_2023_poc import CVE_2023_21837
+                from CVE_2023_poc.CVE_2023_21837 import domin
+                return domin()
             b6_button = Button(F2, text ="CVE-2023-21837",command = CVE_2023_21837, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.48, rely = 0.79,anchor = NE)
             
             def CVE_2023_21839():
@@ -980,7 +1008,8 @@ class home:
             b2_button = Button(F2, text ="CVE-2023-22960",command = CVE_2023_22960, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.47,anchor = NE)
           
             def CVE_2023_23333():
-                from CVE_2023_poc import CVE_2023_23333
+                from CVE_2023_poc.CVE_2023_23333 import Apacheld
+                return Apacheld()
             b4_button = Button(F2, text ="CVE-2023-23333", command = CVE_2023_23333,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.73, rely = 0.55,anchor = NE)
             
   
@@ -990,7 +1019,8 @@ class home:
             
   
             def CVE_2023_23488():
-                from CVE_2023_poc import CVE_2023_23488
+                from CVE_2023_poc.CVE_2023_23488 import r3nt0n
+                return r3nt0n()
             b6_button = Button(F2, text ="CVE-2023-23488",command = CVE_2023_23488, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.73, rely = 0.71,anchor = NE)
 
             def CVE_2023_23752():
@@ -1009,7 +1039,8 @@ class home:
             Hacher_s.place(x=751, y=45, relwidth=0.24, relheight=0.92)
 
             def CVE_2023_24488():
-                from CVE_2023_poc import CVE_2023_24488
+                from CVE_2023_poc.CVE_2023_24488 import Apachedom
+                return Apachedom()
             b2_button = Button(F2, text ="CVE-2023-24488", command = CVE_2023_24488,fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.15,anchor = NE)
           
             def CVE_2023_24489():
@@ -1026,11 +1057,13 @@ class home:
             b6_button = Button(F2, text ="CVE-2023-25136",command = CVE_2023_25136, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.39,anchor = NE)
             
             def CVE_2023_27163():
-                from CVE_2023_poc import CVE_2023_27163
+                from CVE_2023_poc.CVE_2023_27163 import attack
+                return attack()
             b2_button = Button(F2, text ="CVE-2023-27163",command = CVE_2023_27163, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.47,anchor = NE)
           
             def CVE_2023_27350():
-                from CVE_2023_poc import CVE_2023_27350
+                from CVE_2023_poc.CVE_2023_27350 import vuln_version
+                return vuln_version()
             b4_button = Button(F2, text ="CVE-2023-27350",command = CVE_2023_27350, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx =0.98, rely = 0.55,anchor = NE)
             
   
@@ -1043,8 +1076,8 @@ class home:
                 from CVE_2023_poc import CVE_2023_27524
             b6_button = Button(F2, text ="CVE-2023-27524",command = CVE_2023_27524, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.71,anchor = NE)
             def cve_2022_42475():
-                from CVE_2023_poc import CVE_2022_42475_RCE_POC
-                return CVE_2022_42475_RCE_POC
+                from CVE_2023_poc.CVE_2022_42475_RCE_POC import exploit
+                return exploit()
                      
             b6_button = Button(F2, text ="cve-2022-42475",command = cve_2022_42475, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.79,anchor = NE)
 
@@ -1075,8 +1108,7 @@ class home:
 
 ###########################################################################################################
 
-        F1 = LabelFrame(self.root, text="Tooles", font=(
-            "times new roman", 15, "bold"),  bd=12, relief=GROOVE, bg="#404040",fg = "white")
+        F1 = LabelFrame(self.root, text="Tooles", font=("times new roman", 15, "bold"),  bd=12, relief=GROOVE, bg="#404040",fg = "white")
         F1.place(x=7, y=70, width=300, relheight=0.84)
         
         def main():
