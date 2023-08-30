@@ -1082,8 +1082,8 @@ class home:
             b6_button = Button(F2, text ="cve-2022-42475",command = cve_2022_42475, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.79,anchor = NE)
 
             def CVE_2023_28771_poc():
-                from CVE_2023_poc import CVE_2023_28771_poc
-            
+                from CVE_2023_poc.CVE_2023_28771_poc import exploitprint
+                return exploitprint()
             b2_button = Button(F2, text ="CVE-2023-28771",command = CVE_2023_28771_poc, fg ="#ccc4c4",width=16, bd=7, font="arial 15 bold", relief=GROOVE, bg="#404040").place(relx = 0.98, rely = 0.87,anchor = NE)
             
 
